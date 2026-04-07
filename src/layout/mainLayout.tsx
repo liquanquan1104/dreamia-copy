@@ -1,11 +1,14 @@
-import { Layout } from '@douyinfe/semi-ui-19';
+import type { ReactNode } from 'react'
+import style from './mainLayout.module.less'
+import Sidebar from '@/layout/components/side-bar/siderBar'
 
-export default function MainLayout(){
-    const { Sider, Content } = Layout;
-    return (
-        <Layout className="components-layout-demo">
-            <Sider style={{ width: '120px', background: 'var(--semi-color-fill-2)' }}>Sider</Sider>
-            <Content style={{ height: 300, lineHeight: '300px' }}>Content</Content>
-        </Layout>
-    );
+export default function MainLayout({ children }: { children: ReactNode }) {
+  return (
+    <div className={style.layout}>
+      <Sidebar />
+      <div className={style['main-content']}>
+        {children}
+      </div>
+    </div>
+  )
 }
