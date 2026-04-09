@@ -1,15 +1,29 @@
 import style from './index.module.less'
 import logo from '@/assets/logo.png'
 import avatar from '@/assets/user_image.png'
+import photoHover from '@/assets/photo-hover.jpg'
 import { IconHome, IconCrownStroked, IconShoppingBagStroked, IconEdit2Stroked, IconBellStroked, IconSmartphoneStroked, IconPaperclipStroked, IconCenterLeftStroked, IconPriceTag } from '@douyinfe/semi-icons';
 import { useNavigate } from 'react-router-dom';
-import { Tooltip } from '@douyinfe/semi-ui-19';
+import { Button, Tooltip, Popover, Toast } from '@douyinfe/semi-ui';
 import SideSheet from './components/sideSheet';
 import { useState } from 'react';
 
 export default function SiderBar(){
     const navigate = useNavigate();
     const [visible, setVisible] = useState(false);
+    // const [popoverVisible, setPopoverVisible] = useState(false);
+    const handlePopClick = async () => {
+        try {
+            await navigator.clipboard.writeText(
+        'https://www.doubao.com/chat/38419250014698242?channel=gdt_sem'
+        );
+            Toast.success('复制成功');
+            console.log('lqq 复制成功');
+        } catch (e:unknown) {
+            Toast.error('复制失败');
+            console.error(e);
+        }
+    };
     return (
         <div className={style.sidebar}>
             {/* 顶部图标 */}
@@ -59,7 +73,33 @@ export default function SiderBar(){
                 <Tooltip content="消息中心" position='right'>
                     <IconBellStroked className={style['bottom-icon']} onClick={()=>setVisible(true)} />
                 </Tooltip>
-                <IconSmartphoneStroked className={style['bottom-icon']} />
+                <Popover
+                    spacing={28}
+                    content={
+                        <div className={style['popover-box']}>
+                            <div >
+                                <img className={style['photo-box']} src={photoHover} alt="photo" />
+                            </div>
+                            <div className={style['title']}>
+                                即梦AI APP上线啦！
+                            </div>
+                            <div className={style['desc']}>
+                                扫码或者复制链接到手机端，在移动端继续展开AI创造之旅
+                            </div>
+                            <Button className={style['button']} onClick={handlePopClick}>复制链接</Button>
+                        </div>
+                    }
+                    // visible={popoverVisible}
+                    position='right'
+                >
+                    {/* content={
+                        <div>
+                            <div>互动</div> 420 * 230
+                            <div>官方消息</div>  430 *400
+                        </div>
+                    } */}
+                    <IconSmartphoneStroked className={style['bottom-icon']} />
+                </Popover>
                 <Tooltip content="API调用" position='right'>
                     <IconPaperclipStroked className={style['bottom-icon']} />
                 </Tooltip>

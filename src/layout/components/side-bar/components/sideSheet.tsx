@@ -1,4 +1,4 @@
-import {  SideSheet as Drawer, Tabs, TabPane} from '@douyinfe/semi-ui-19';
+import {  SideSheet as Drawer, Tabs, TabPane} from '@douyinfe/semi-ui';
 // import { useEffect } from 'react';
 
 export default function SideSheet({visible, onCancel}: {visible: boolean, onCancel: () => void}) {
