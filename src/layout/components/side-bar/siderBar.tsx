@@ -2,13 +2,19 @@ import style from './index.module.less'
 import logo from '@/assets/logo.png'
 import avatar from '@/assets/user_image.png'
 import { IconHome, IconCrownStroked, IconShoppingBagStroked, IconEdit2Stroked, IconBellStroked, IconSmartphoneStroked, IconPaperclipStroked, IconCenterLeftStroked, IconPriceTag } from '@douyinfe/semi-icons';
+import { useNavigate } from 'react-router-dom';
+import { Tooltip } from '@douyinfe/semi-ui-19';
+import SideSheet from './components/sideSheet';
+import { useState } from 'react';
 
 export default function SiderBar(){
+    const navigate = useNavigate();
+    const [visible, setVisible] = useState(false);
     return (
         <div className={style.sidebar}>
             {/* 顶部图标 */}
             <div className={style['top-icon']}>
-                <img src={logo} alt="logo" />
+                <img src={logo} alt="logo" onClick={()=>navigate('/')} />
             </div>
             {/* 中部菜单栏 */}
             <div className={style['nav-menu']}>
@@ -31,21 +37,36 @@ export default function SiderBar(){
             </div>
             {/* 底部菜单栏 */}
             <div className={style['bottom-user-menu']}>
-                <div className={style['vip-tip']}>
+                <Tooltip 
+                    content={
+                        <div style={{ fontSize: 11}}>
+                            还未开通会员&nbsp;&nbsp;
+                            <span style={{color: '#10c0d5'}} onClick={()=>navigate('#')}>去开通</span>
+                        </div>
+                    }
+                    position='right'>
+                    <div className={style['vip-tip']}>
                     <div >
                         <IconPriceTag  className={style.icon} />
                         <span>54</span>
                     </div>
                     <span>开会员</span>
                 </div>
+                </Tooltip>
                 <div className={style['user-avatar']}>
                     <img src={avatar} alt="avatar" />
                 </div>
-                <IconBellStroked className={style['bottom-icon']} />
+                <Tooltip content="消息中心" position='right'>
+                    <IconBellStroked className={style['bottom-icon']} onClick={()=>setVisible(true)} />
+                </Tooltip>
                 <IconSmartphoneStroked className={style['bottom-icon']} />
-                <IconPaperclipStroked className={style['bottom-icon']} />
-                <IconCenterLeftStroked className={style['bottom-icon']} />
-
+                <Tooltip content="API调用" position='right'>
+                    <IconPaperclipStroked className={style['bottom-icon']} />
+                </Tooltip>
+                <Tooltip content="更多设置" position='right'>
+                    <IconCenterLeftStroked className={style['bottom-icon']} />
+                </Tooltip>
+                <SideSheet visible={visible} onCancel={()=>setVisible(false)} />
             </div>
         </div>
     );
