@@ -1,0 +1,87 @@
+.heading-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    font-family: "Founder Yashi Black";
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 32px;
+    color: #0f1418;
+}
+
+.center {
+  position: relative;
+  display: inline-block;
+}
+
+/* 中间可点击部分 */
+.trigger {
+  color: #00a1c3;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+}
+
+.arrow {
+  font-size: 20px;
+}
+
+/* 弹层 */
+.dropdown { 
+    background: transparent; 
+    border-radius: 12px; 
+    
+}
+
+.glow {
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 300px;
+  height: 360px;
+  border-radius: 80px;
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+
+  background: rgba(255, 255, 255, 0.15);
+
+  mask-image: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0.6) 25%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* 每一项 */
+.item {
+  position: relative;
+  font-size: 24px;
+  cursor: pointer;
+  color:#546571;
+  padding-bottom: 5px; 
+  z-index: 10;
+  &:hover {
+    color: #00a1c3;
+  }
+}
+
+/* 选中 */
+.active {
+  color: #00a1c3;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -6px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
