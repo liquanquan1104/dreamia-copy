@@ -5,8 +5,10 @@
  import { MODE_OPTIONS } from '@/types/constants';
  import cls from 'classnames';
  import { useState, useRef, useEffect } from 'react';
+ import useMode from '@/pages/home/hooks/useMode';
 
- export default function Heading({mode, onChange}: {mode: GenerateMode, onChange: (mode: GenerateMode) => void}) {
+ export default function Heading() {
+  const {mode, setMode} = useMode();
   const current = MODE_OPTIONS.find(i => i.value === mode);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [dropdownVisible, setDropdownVisible] = useState(false);
@@ -48,7 +50,7 @@
                   [style.active]: item.value === mode,
                 })}
                 onClick={() => {
-                  onChange(item.value as GenerateMode);
+                  setMode(item.value as GenerateMode);
                   setDropdownVisible(false);
                 }}
               >
