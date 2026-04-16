@@ -9,7 +9,7 @@ export default function AgentPreferenceCard() {
                 { value: '2', label: '选项2' },
             ]}
         />
-        <div>111233242</div>
+        <div style={{ color: '#00a1c2' }}>111233242</div>
         </>
     
     )

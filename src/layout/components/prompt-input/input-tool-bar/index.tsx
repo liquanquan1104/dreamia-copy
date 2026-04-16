@@ -5,6 +5,8 @@ import { IconArrowUp, IconConfigStroked, IconSearchStroked, IconLightningStroked
 import { Tooltip, Popover } from '@douyinfe/semi-ui';
 import { useState } from 'react';
 import AgentPreferenceCard from './components/agent-preference-card';
+import CreativityCard from './components/creativity-card';
+
 
 export default function InputToolBar() {
   const [isInspired, setIsInspired] = useState(false);
@@ -30,12 +32,16 @@ export default function InputToolBar() {
               isChecked={isInspired}
               isActive={isInspired}
               onClick={() => setIsInspired(!isInspired)}/>
-             <BaseButton
+             <Popover content={<CreativityCard />} position="top">
+              <span>
+              <BaseButton
               text="创意设计"
               icon={<IconLightningStroked style={{fontSize: 15}}/>}
               isChecked={isCreative}
               isActive={isCreative}
               onClick={() => setIsCreative(!isCreative)}/>
+              </span>
+             </Popover>
         </div>
           <Tooltip content="语音识别" style={{ fontSize: 12 }}>
             <IconMicrophoneStroked style={{fontSize: 20, color: '#919ca5'}}  />
