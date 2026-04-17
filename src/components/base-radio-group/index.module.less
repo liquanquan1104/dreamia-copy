@@ -1,0 +1,186 @@
+.radio-group-container {
+    display: flex;
+    flex-direction: column;
+    // align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+    .title {
+        font-size: 12px;
+        line-height: 18px;
+        font-family: var(--alphanumeric-font-family);
+        color: #536471a3;
+    }
+    .radio-group {
+        width: 100%;
+        display: flex;
+        min-height: 38px;
+
+        :global {
+            .semi-radio {
+                flex: 1; 
+                display: flex;
+                padding: 0;
+            }
+
+            .semi-radio-inner {
+                display: none;
+            }
+
+            .semi-radio-content {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .semi-radio-buttonRadioGroup {
+                background-color: #f7f7f7;
+                color: #24292c;
+                border: 1px solid #f7f7f7;
+                border-radius: 12px;
+                &:hover {
+                    background-color: #ffffff !important;
+                }
+            }   
+            .semi-radio-addon-buttonRadio {
+                flex: 1;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                background-color:#f7f7f7;
+                border-radius: 10px;
+                font-weight: 450;
+                border-radius: 10px;
+                padding: 8px 10px;
+                &:hover {
+                    background-color: #ffffff !important;       
+                }
+            }
+
+            .semi-radio-addon-buttonRadio-checked {
+                color:#3a3e42;
+                font-weight: 450;
+                background-color: #fff;
+                border-radius: 10px;
+                
+            }
+
+        }
+        background-color: #f7f7f7;
+        border-radius: 12px;
+    }
+
+    .radio-option{
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        gap: 4px;
+        .ratio-icon-container {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .ratio-icon {
+            width: 70%;
+            max-height: 80%;
+            border: 1.5px solid #0f1418;
+            border-radius: 4px;
+            background: transparent;
+        }
+    }
+}
+
+// .radio-group-container {
+//     display: flex;
+//     flex-direction: column;
+//     gap: 12px;
+//     width: 100%;
+
+//     .title {
+//         font-size: 12px;
+//         line-height: 18px;
+//         font-family: var(--alphanumeric-font-family);
+//         color: #536471a3;
+//     }
+
+//     .radio-group {
+//         width: 100%;
+//         display: flex;
+//         background-color: #f7f7f7;
+//         border-radius: 12px;
+
+//         :global {
+//             /* ✅ 每一项平分 */
+//             .semi-radio {
+//     flex: 1;
+//     display: flex;
+//     padding: 0;
+//   }
+
+//   .semi-radio-inner {
+//     display: none;
+//   }
+
+//   .semi-radio-content {
+//     flex: 1;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//   }
+
+//             /* ❗修复点1：用对类名 */
+//             .semi-radio-buttonRadioGroup {
+//                 width: 100%;
+//                 display: flex;
+//                 background-color: #d3dfa6;
+//                 color: #24292c;
+//                 border: 1px solid #f7f7f7;
+//                 border-radius: 12px;
+
+//                 &:hover {
+//                     border-color: #d3dfa6 !important;
+//                 }
+//             }
+
+            
+//             /* 内容层真正撑开 */
+//             .semi-radio-addon-buttonRadio {
+//                 flex: 1;
+//                 width: 100%;
+//                 height: 100%;
+//                 display: flex;
+//                 align-items: center;
+//                 justify-content: center;
+//                 text-align: center;
+
+//                 background-color: #56cbe6;
+//                 border-radius: 10px;
+//                 font-weight: 450;
+
+//                 &:hover {
+//                     background-color: #ffffff !important;
+//                 }
+//             }
+
+//             /* 选中态 */
+//             .semi-radio-addon-buttonRadio-checked {
+//                 color: #3a3e42;
+//                 font-weight: 450;
+//                 background-color: #c54747;
+//                 border-radius: 10px;
+//             }
+//         }
+//     }
+
+//     .radio-option {
+//         display: flex;
+//         align-items: center;
+//         justify-content: center;
+//         gap: 4px;
+//     }
+// }

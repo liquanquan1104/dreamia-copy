@@ -1,0 +1,52 @@
+.agent-preference-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    width: 484px;
+    height: 300px;
+    padding: 16px;
+    border-radius: 16px;
+
+    .card-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
+    .title {
+        font-size: 14px;
+        line-height: 22px;
+        font-family: var(--alphanumeric-font-family);
+        font-weight: 500;
+        color: #151a20;
+    }
+    
+    .switch-container {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        :global {
+            .semi-switch-checked {
+                background-color: #00cae0;
+                &:hover {
+                    box-shadow: 0 0 0 2.5px #d9f5f9;
+                }
+            }
+        }
+    }
+
+    .auto-text {
+        font-size: 12px;
+        line-height: 18px;
+        font-family: var(--alphanumeric-font-family);
+        color: #6d7b87;
+        
+    }
+    .switch {
+        width: 28px;
+        height: 16px;
+        
+    }
+}

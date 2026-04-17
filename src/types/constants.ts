@@ -33,4 +33,10 @@ export const MODE_OPTIONS = [
     },
 ] as const;
 
+export const AGENT_MODE_OPTIONS = [
+    { label: '图片', value: 'image' },
+    { label: '视频', value: 'video' },
+] as const;
+
 export type GenerateMode = typeof MODE_OPTIONS[number]['value'];
+export type AgentMode = typeof AGENT_MODE_OPTIONS[number]['value'];
