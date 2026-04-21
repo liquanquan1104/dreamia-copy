@@ -1,17 +1,32 @@
 import BaseRadioGroup from '@/components/base-radio-group';
 import type { RadioOption } from '@/components/base-radio-group';
 import { IconIndenpentCornersStroked } from '@douyinfe/semi-icons';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './index.module.less'
 import type { AgentMode } from '@/types/constants';
 import { AGENT_MODE_OPTIONS } from '@/types/constants';
 import { Switch } from '@douyinfe/semi-ui';
 import BaseSelect from '@/components/base-select';
 
+type RadioEvent = {
+    target: {
+        value: string;
+    };
+};
+
 export default function AgentPreferenceCard() {
     const [agentMode, setAgentMode] = useState<AgentMode>('image');
     const [auto, setAuto] = useState<boolean>(false);
-    const [model, setModel] = useState<string>('seed1');
+    const [model, setModel] = useState<string>('Seedream 5.0 Lite');
+    const [claritySelectVisible, setClaritySelectVisible] = useState<boolean>(true);
+    const [resolution, setResolution] = useState<string>(agentMode === 'image' ? '2K' : '720P');
+
+    const getDefaultResolution = (mode: AgentMode) => mode === 'image' ? '2K' : '720P';
+
+    useEffect(() => {
+        setResolution(getDefaultResolution(agentMode));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [agentMode]);
     const imageScaleOption = [
         { value: 'smart', label: '智能', icon: <IconIndenpentCornersStroked style={{fontSize: 15}}/> },
         { value: '21:9', label: '21:9', ratio: '21/9' },
@@ -32,20 +47,58 @@ export default function AgentPreferenceCard() {
         { value: '3:4', label: '3:4', ratio: '3/4' },
         { value: '9:16', label: '9:16', ratio: '9/16' },
     ]
-    const modelOptions = [
-        {value: 'seed1', label: '模型1', tag: 'new', img_url: 'src/assets/sd20_avg.svg', description: '模型1的描述'},
-        {value: 'seed2', label: '模型2', tag: '模型', img_url: 'src/assets/sd20_avg.svg', description: '模型2的描述'},
-        {value: 'seed3', label: '模型3', tag: '模型'},
-        {value: 'seed4', label: '模型4', tag: '模型'},
-        {value: 'seed5', label: '模型5', tag: '模型'},
-        {value: 'seed6', label: '模型6', tag: '模型'},
-        {value: 'seed7', label: '模型7', tag: '模型'},
-        {value: 'seed8', label: '模型8', tag: '模型'},
-        {value: 'seed9', label: '模型9', tag: '模型'},
-        {value: 'seed10', label: '模型10', tag: '模型'},
-        {value: 'seed11', label: '模型11', tag: '模型'},
-        {value: 'seed12', label: '模型12', tag: '模型'},
+    const ImagemodelOptions = [
+        {value: 'Seedream 5.0 Lite', label: '图片5.0 Lite', tag: ['new'], img_url: 'src/assets/sd20_avg.svg', description: '指令响应更精准，生成效果更智能'},
+        {value: 'Seedream 4.6', label: '图片4.6', tag: ['new'], img_url: 'src/assets/sd20_avg.svg', description: '人像一致性保持更好，性价比更高'},
+        {value: 'Seedream 4.5', label: '图片4.5', img_url: 'src/assets/sd20_avg.svg', description: '强化一致性，风格与图文响应'},
+        {value: 'Seedream 4.0 Design', label: '图片4.1', img_url: 'src/assets/sd20_avg.svg', description: '更专业的创意、美学和一致性保持'},
+        {value: 'Seedream 4.0', label: '图片4.0', img_url: 'src/assets/sd20_avg.svg', description: '支持多图参考、系列组图生成'},
+        {value: 'Seedream 3.0', label: '图片3.1', img_url: 'src/assets/sd20_avg.svg', description: '丰富的美学多样性，画面更鲜明生动'},
+        {value: 'Seedream 3.0.0', label: '图片3.0', img_url: 'src/assets/sd20_avg.svg', description: '影视质感，文字更准，直出2K高清图'},
            ]
+
+    const VedioResolutionIcon=(
+        <span className={styles['resolution-icon']}>HD</span>
+    )
+    const ImageResolutionIcon=(
+        <span className={styles['resolution-icon']}>2K</span>
+    )
+
+    const videoResolutionOptions = [
+        {value: '720P', label: '720P', icon: VedioResolutionIcon},
+    ];
+
+    const imageResolutionOptions = [
+        {value: '2K', label: '高清 2K', icon: ImageResolutionIcon},
+    ]
+
+    const VedioVIPTooltip = (
+        <div className={styles['tooltip']}>
+            此功能为会员专属
+            <span>开通会员</span>
+        </div>
+    );
+        
+    const videoModelOptions = [
+            {value:'seed', label: 'Seedance 2.0 Fast VIP', tag: ['✧','New'], img_url: 'src/assets/sd20_avg.svg', description: '极速推理，会员专属通道，音视文图均可参考（暂不支持真人人脸）', tooltip:VedioVIPTooltip},
+             {value: 'seed-1', label: 'Seedance 2.0 VIP', tag: ['✧','New'], img_url: 'src/assets/sd20_avg.svg', description: '全模态能力，会员专属通道，音视文图均可参考（暂不支持真人人脸）', tooltip:VedioVIPTooltip},
+             {value: 'seed-2', label: 'Seedance 2.0 Fast', tag: ['New'], img_url: 'src/assets/sd20_avg.svg', description: '高性价比，音视文图均可参考（暂不支持真人人脸）'},
+             {value: 'seed-3 4.0', label: 'Seedance 2.0', tag: ['限免1次','New'], img_url: 'src/assets/sd20_avg.svg', description: '全年王者，音视文图均可参考（暂不支持真人人脸）'},
+             {value: 'Seedance 1.5 Pro', label: 'Seedance 1.5 Pro', tag: ['New'], img_url: 'src/assets/sd20_avg.svg', description: '音画同出，全新体验'},
+             {value: 'Seedance 1.0', label: 'Seedance 1.0', tag: ['✧'], img_url: 'src/assets/sd20_avg.svg', description: '效果最佳，画质超清'},
+             {value: 'Seedance 1.0 Fast', label: 'Seedance 1.0 Fast', tag: ['New'], img_url: 'src/assets/sd20_avg.svg', description: 'Pro级表现，加量不加价'},
+        ]
+
+    const handleAgentModeChange = (e: RadioEvent) => {
+        setAgentMode(e.target.value as AgentMode)
+        setClaritySelectVisible(e.target.value as AgentMode === 'image');
+    }
+
+    const handleModelChange = (val:string) => {
+        setModel(val);
+        setClaritySelectVisible(val === 'Seedance 1.0 Fast' || val === 'Seedance 1.5 Pro');
+    }
+
     return (
         <div className={styles['agent-preference-card']}>
             <div className={styles['card-head']}>
@@ -58,7 +111,7 @@ export default function AgentPreferenceCard() {
             <BaseRadioGroup
                 options={AGENT_MODE_OPTIONS as unknown as RadioOption[]}
                 value={agentMode}
-                onChange={(e) => setAgentMode(e.target.value as AgentMode)}
+                onChange={handleAgentModeChange}
                 fontSize={13}
             />
             <BaseRadioGroup
@@ -69,11 +122,24 @@ export default function AgentPreferenceCard() {
             <div className={styles['other-setting']}>
                 <span>其他设置</span>
             </div>
-            <BaseSelect
-                options={modelOptions}
+            <div className={styles['model-container']}>
+                <BaseSelect
+                options={agentMode === 'image' ? ImagemodelOptions : videoModelOptions}
                 value={model}
-                onChange={setModel}
-            />
+                onChange={handleModelChange}
+                title='选择模型：'
+                withTitleDesc={true}
+                />
+                {claritySelectVisible && (
+                    <BaseSelect
+                        options={agentMode === 'image' ? imageResolutionOptions : videoResolutionOptions}
+                        value={resolution}
+                        onChange={setResolution}
+                        title='选择清晰度'
+                    />
+                )}
+            </div>
+           
         
         </div>
 

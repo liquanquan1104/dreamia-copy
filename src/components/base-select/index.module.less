@@ -13,11 +13,19 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    margin: 0 2px;
+    &:hover {
+        background-color: #f2f2f2;
+        cursor: pointer;
+    }
     .option-item {
         display: flex;
         align-items: center;
         justify-content: flex-start;
         gap: 12px;
+        
         .option-img-container {
             width: 40px;
             height: 40px;
@@ -42,8 +50,8 @@
                 justify-content: flex-start;
                 gap: 4px;
                 .tag {
-                    font-size: 5px;
-                    line-height: 5px;
+                    font-size: 7px;
+                    line-height: 7px;
                     font-family: var(--alphanumeric-font-family);
                     color: #00a1c3;
                     background-color: #e7f3f8;
@@ -55,26 +63,40 @@
                 font-size: 12px;
                 line-height: 18px;
                 font-family: var(--alphanumeric-font-family);
-                color: #cbd1d4;
+                color: #536471a3;
             }
         }
     }
 }
+.out-slot {
+    font-size: 12px;
+    font-weight: 400;
+    height: 32px;
+    padding: 12px 12px 8px;
+    line-height: 12px;
+    font-family: var(--alphanumeric-font-family);
+    color: #536471A3;
+}
+
+
 
 :global {
+    .semi-popover-wrapper {
+        border-radius: 16px;
+    }
+    .semi-select-option-list-wrapper {
+        border-radius: 18px;
+    }
     .semi-select {
         border-radius: 8px;
-       
+        border-color: #f7f7f7 !important;
+
     }
     .semi-select-selection {
         display: flex;
         align-items: center;
         justify-content: center;
         width: 100%;
-        
-        // :hover {
-        //     border-color: #d3dfa6 !important;
-        // }
     }
     .semi-select-option {
         border-radius: 12px;
@@ -84,16 +106,16 @@
     .semi-select-option-selected {
         font-weight: 500;
     }
-    .semi-select-open, .semi-select-focus {
-        border: 1px solid #f7f7f7;
+    .semi-select-open,
+    .semi-select-focus {
+        border-color: #f7f7f7 !important;
         &:hover {
-            border-color: #d3dfa6 !important;
+            background-color: #ededed !important;
         }
     }
     .semi-select-group {
         padding-top: 8px;
         padding-left: 16px;
-        
     }
-    
+
 }
