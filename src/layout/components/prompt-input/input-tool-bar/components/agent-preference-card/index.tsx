@@ -14,10 +14,23 @@ type RadioEvent = {
     };
 };
 
-export default function AgentPreferenceCard() {
+export type AgentPreferenceInfo = {
+    agentMode: AgentMode;
+    auto: boolean;
+    ImageModel: string;
+    VideoModel: string;
+    imageScale: string;
+    videoScale: string;
+}
+
+export default function AgentPreferenceCard({handleTransform}: {handleTransform: (info: AgentPreferenceInfo) => void}) {
     const [agentMode, setAgentMode] = useState<AgentMode>('image');
     const [auto, setAuto] = useState<boolean>(false);
-    const [model, setModel] = useState<string>('Seedream 5.0 Lite');
+    const [ImageModel, setImageModel] = useState<string>('Seedream 5.0 Lite');
+    const [VideoModel, setVideoModel] = useState<string>('Seedance 2.0');
+    const [imageScale, setImageScale] = useState<string>('smart');
+    const [videoScale, setVideoScale] = useState<string>('smart');
+
     const [claritySelectVisible, setClaritySelectVisible] = useState<boolean>(true);
     const [resolution, setResolution] = useState<string>(agentMode === 'image' ? '2K' : '720P');
 
@@ -27,6 +40,17 @@ export default function AgentPreferenceCard() {
         setResolution(getDefaultResolution(agentMode));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [agentMode]);
+
+    useEffect(() => {
+        handleTransform({
+            agentMode,
+            auto,
+            ImageModel: ImageModelOptions.find(item => item.value === ImageModel)?.label || ImageModel,
+            VideoModel: videoModelOptions.find(item => item.value === VideoModel)?.label || VideoModel,
+            imageScale: imageScaleOption.find(item => item.value === imageScale)?.label || imageScale,
+            videoScale: videoScaleOption.find(item => item.value === videoScale)?.label || videoScale,
+        });
+    }, [agentMode, auto, ImageModel, VideoModel, imageScale, videoScale]);
     const imageScaleOption = [
         { value: 'smart', label: '智能', icon: <IconIndenpentCornersStroked style={{fontSize: 15}}/> },
         { value: '21:9', label: '21:9', ratio: '21/9' },
@@ -47,7 +71,7 @@ export default function AgentPreferenceCard() {
         { value: '3:4', label: '3:4', ratio: '3/4' },
         { value: '9:16', label: '9:16', ratio: '9/16' },
     ]
-    const ImagemodelOptions = [
+    const ImageModelOptions = [
         {value: 'Seedream 5.0 Lite', label: '图片5.0 Lite', tag: ['new'], img_url: 'src/assets/sd20_avg.svg', description: '指令响应更精准，生成效果更智能'},
         {value: 'Seedream 4.6', label: '图片4.6', tag: ['new'], img_url: 'src/assets/sd20_avg.svg', description: '人像一致性保持更好，性价比更高'},
         {value: 'Seedream 4.5', label: '图片4.5', img_url: 'src/assets/sd20_avg.svg', description: '强化一致性，风格与图文响应'},
@@ -80,24 +104,36 @@ export default function AgentPreferenceCard() {
     );
         
     const videoModelOptions = [
-            {value:'seed', label: 'Seedance 2.0 Fast VIP', tag: ['✧','New'], img_url: 'src/assets/sd20_avg.svg', description: '极速推理，会员专属通道，音视文图均可参考（暂不支持真人人脸）', tooltip:VedioVIPTooltip},
-             {value: 'seed-1', label: 'Seedance 2.0 VIP', tag: ['✧','New'], img_url: 'src/assets/sd20_avg.svg', description: '全模态能力，会员专属通道，音视文图均可参考（暂不支持真人人脸）', tooltip:VedioVIPTooltip},
-             {value: 'seed-2', label: 'Seedance 2.0 Fast', tag: ['New'], img_url: 'src/assets/sd20_avg.svg', description: '高性价比，音视文图均可参考（暂不支持真人人脸）'},
-             {value: 'seed-3 4.0', label: 'Seedance 2.0', tag: ['限免1次','New'], img_url: 'src/assets/sd20_avg.svg', description: '全年王者，音视文图均可参考（暂不支持真人人脸）'},
+            {value: 'Seedance 2.0 Fast VIP', label: 'Seedance 2.0 Fast VIP', tag: ['✧','New'], img_url: 'src/assets/sd20_avg.svg', description: '极速推理，会员专属通道，音视文图均可参考（暂不支持真人人脸）', tooltip:VedioVIPTooltip},
+             {value: 'Seedance 2.0 VIP', label: 'Seedance 2.0 VIP', tag: ['✧','New'], img_url: 'src/assets/sd20_avg.svg', description: '全模态能力，会员专属通道，音视文图均可参考（暂不支持真人人脸）', tooltip:VedioVIPTooltip},
+             {value: 'Seedance 2.0 Fast', label: 'Seedance 2.0 Fast', tag: ['New'], img_url: 'src/assets/sd20_avg.svg', description: '高性价比，音视文图均可参考（暂不支持真人人脸）'},
+             {value: 'Seedance 2.0', label: 'Seedance 2.0', tag: ['限免1次','New'], img_url: 'src/assets/sd20_avg.svg', description: '全年王者，音视文图均可参考（暂不支持真人人脸）'},
              {value: 'Seedance 1.5 Pro', label: 'Seedance 1.5 Pro', tag: ['New'], img_url: 'src/assets/sd20_avg.svg', description: '音画同出，全新体验'},
              {value: 'Seedance 1.0', label: 'Seedance 1.0', tag: ['✧'], img_url: 'src/assets/sd20_avg.svg', description: '效果最佳，画质超清'},
              {value: 'Seedance 1.0 Fast', label: 'Seedance 1.0 Fast', tag: ['New'], img_url: 'src/assets/sd20_avg.svg', description: 'Pro级表现，加量不加价'},
         ]
 
     const handleAgentModeChange = (e: RadioEvent) => {
-        setAgentMode(e.target.value as AgentMode)
-        setClaritySelectVisible(e.target.value as AgentMode === 'image');
+        const newMode = e.target.value as AgentMode;
+        setAgentMode(newMode);
+        if (newMode === 'video') {
+            setClaritySelectVisible(VideoModel === 'Seedance 1.0 Fast' || VideoModel === 'Seedance 1.5 Pro');
+        } else {
+            setClaritySelectVisible(true);
+        }
     }
 
-    const handleModelChange = (val:string) => {
-        setModel(val);
+    const handleImageModelChange = (val:string) => {
+        setImageModel(val);
+        setClaritySelectVisible(true);
+    }
+
+    const handleVideoModelChange = (val:string) => {
+        setVideoModel(val);
         setClaritySelectVisible(val === 'Seedance 1.0 Fast' || val === 'Seedance 1.5 Pro');
     }
+
+
 
     return (
         <div className={styles['agent-preference-card']}>
@@ -114,22 +150,48 @@ export default function AgentPreferenceCard() {
                 onChange={handleAgentModeChange}
                 fontSize={13}
             />
-            <BaseRadioGroup
-                options={agentMode === 'image' ? imageScaleOption : videoScaleOption}
-                title='选择比例'
-                fontSize={12}
-            />
+            {agentMode === 'image' ? (
+                <BaseRadioGroup
+                    options={imageScaleOption}
+                    title='选择比例'
+                    fontSize={12}
+                    value={imageScale}
+                    onChange={(e) => setImageScale(e.target.value)}
+                /> ) : 
+                (
+                    <BaseRadioGroup
+                        options={videoScaleOption}
+                        title='选择比例'
+                        fontSize={12}
+                        value={videoScale}
+                        onChange={(e) => setVideoScale(e.target.value)}
+                    />
+                )
+            
+            
+            }
             <div className={styles['other-setting']}>
                 <span>其他设置</span>
             </div>
             <div className={styles['model-container']}>
-                <BaseSelect
-                options={agentMode === 'image' ? ImagemodelOptions : videoModelOptions}
-                value={model}
-                onChange={handleModelChange}
-                title='选择模型：'
-                withTitleDesc={true}
+                {agentMode === 'image' ? (
+                    <BaseSelect
+                        options={ImageModelOptions}
+                        value={ImageModel}
+                        onChange={handleImageModelChange}
+                        title='选择模型：'
+                        withTitleDesc={true}
+                    />
+                ):(
+                    <BaseSelect
+                    options={videoModelOptions}
+                    value={VideoModel}
+                    onChange={handleVideoModelChange}
+                    title='选择模型：'
+                    withTitleDesc={true}
                 />
+                )}
+                
                 {claritySelectVisible && (
                     <BaseSelect
                         options={agentMode === 'image' ? imageResolutionOptions : videoResolutionOptions}
@@ -138,9 +200,7 @@ export default function AgentPreferenceCard() {
                         title='选择清晰度'
                     />
                 )}
-            </div>
-           
-        
+            </div>        
         </div>
 
     )
