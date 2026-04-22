@@ -32,21 +32,28 @@ export interface SelectOption {
     render?: (option: SelectOption) => React.ReactNode; // 自定义渲染函数
 }
 
+// 组件Props
 export interface BaseSelectProps {
     options: SelectOption[];
     title?: string | React.ReactNode;
     withTitleDesc?: boolean;
     value: string;
     onChange: (value: string) => void;
+    mask?: boolean;
+    onClickItem?: () => void; 
 }
 
-export default function BaseSelect({ options, value, onChange, title, withTitleDesc = false }: BaseSelectProps) {
+export default function BaseSelect({ options, value, onChange, title, withTitleDesc, mask = false, onClickItem }: BaseSelectProps) {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [selectedValue, setSelectedValue] = useState<string>(value);
     const renderSelectedItem = (optionNode: Record<string, unknown>) => {
         const option = optionNode as unknown as SelectOption;
         return (
-            <div className={styles['selected-item']}>
+            <div 
+                className={styles['selected-item']} 
+                style={mask ? { color: '#939597' } : undefined}
+                onClick={onClickItem}
+                >
                 {option.icon ? option.icon : <IconBytedanceLogo style={{ fontSize: 16 }} />}
                 <span style={{fontSize: 12}}>{option.label}</span>
                 {isOpen ? <IconChevronDownStroked style={{ transform: 'rotate(180deg)', fontSize: 12 }} /> : <IconChevronDownStroked style={{ fontSize: 12 }} />}
@@ -69,13 +76,16 @@ export default function BaseSelect({ options, value, onChange, title, withTitleD
 
     const renderOptionItem = (props: OptionRenderProps) => {
         const { label, value: optionValue, selected, description, img_url, tag, onClick, tooltip, icon } = props;
-        const handleClick = (e: React.MouseEvent) => {
+
+        const handleItemClick = (e: React.MouseEvent) => {
+            e.stopPropagation();
             setSelectedValue(String(optionValue));
             onClick?.(e);
+            onClickItem?.();
         };
 
         const optionContent = (
-            <div className={styles['option-item']}>
+            <div className={styles['option-item']} onClick={handleItemClick}>
                 {img_url ? (
                     <div className={styles['option-img-container']}>
                         <img
@@ -104,7 +114,7 @@ export default function BaseSelect({ options, value, onChange, title, withTitleD
         );
 
         return (
-            <div className={styles['option-content']} onClick={handleClick}>
+            <div className={styles['option-content']}>
                 {tooltip ? (
                     <Tooltip content={tooltip} showArrow={false}>
                         {optionContent}

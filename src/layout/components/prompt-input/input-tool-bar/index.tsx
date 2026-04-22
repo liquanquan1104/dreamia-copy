@@ -47,7 +47,7 @@ export default function InputToolBar() {
             >
               <span className={style['tooltip-wrapper']}>
                 <BaseButton
-                  text="自定义"
+                  text={agentPreferenceInfo.auto ? '自动' : '自定义'}
                   icon={<IconConfigStroked style={{fontSize: 14}}/>}
                 />
                 <div className={style['custom-tooltip']}>{preferTooptip}</div>

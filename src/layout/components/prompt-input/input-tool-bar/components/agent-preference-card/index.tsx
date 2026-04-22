@@ -25,7 +25,7 @@ export type AgentPreferenceInfo = {
 
 export default function AgentPreferenceCard({handleTransform}: {handleTransform: (info: AgentPreferenceInfo) => void}) {
     const [agentMode, setAgentMode] = useState<AgentMode>('image');
-    const [auto, setAuto] = useState<boolean>(false);
+    const [auto, setAuto] = useState<boolean>(true);
     const [ImageModel, setImageModel] = useState<string>('Seedream 5.0 Lite');
     const [VideoModel, setVideoModel] = useState<string>('Seedance 2.0');
     const [imageScale, setImageScale] = useState<string>('smart');
@@ -82,10 +82,10 @@ export default function AgentPreferenceCard({handleTransform}: {handleTransform:
            ]
 
     const VedioResolutionIcon=(
-        <span className={styles['resolution-icon']}>HD</span>
+        <span key={`hd-${auto}`} className={`${styles['resolution-icon']} ${auto ? styles['disabled'] : ''}`}>HD</span>
     )
     const ImageResolutionIcon=(
-        <span className={styles['resolution-icon']}>2K</span>
+        <span key={`2k-${auto}`} className={`${styles['resolution-icon']} ${auto ? styles['disabled'] : ''}`}>2K</span>
     )
 
     const videoResolutionOptions = [
@@ -144,27 +144,43 @@ export default function AgentPreferenceCard({handleTransform}: {handleTransform:
                     <Switch checked={auto} onChange={setAuto} size="small" className={styles['switch']} />                  
                 </div>
             </div>
+            {/* 模式选择：图片/视频 */}
             <BaseRadioGroup
                 options={AGENT_MODE_OPTIONS as unknown as RadioOption[]}
                 value={agentMode}
+                mask={auto}
                 onChange={handleAgentModeChange}
                 fontSize={13}
             />
             {agentMode === 'image' ? (
+                // 图片比例选择
                 <BaseRadioGroup
                     options={imageScaleOption}
                     title='选择比例'
                     fontSize={12}
                     value={imageScale}
-                    onChange={(e) => setImageScale(e.target.value)}
+                    mask={auto}
+                    onChange={
+                        (e) => {
+                            setImageScale(e.target.value);
+                            setAuto(false);
+                        }
+                    }
                 /> ) : 
                 (
+                    // 视频比例选择
                     <BaseRadioGroup
                         options={videoScaleOption}
                         title='选择比例'
                         fontSize={12}
                         value={videoScale}
-                        onChange={(e) => setVideoScale(e.target.value)}
+                        mask={auto}
+                        onChange={
+                            (e) => {
+                                setVideoScale(e.target.value);
+                                setAuto(false);
+                            }
+                        }
                     />
                 )
             
@@ -175,29 +191,41 @@ export default function AgentPreferenceCard({handleTransform}: {handleTransform:
             </div>
             <div className={styles['model-container']}>
                 {agentMode === 'image' ? (
+                    // 图片模型选择
                     <BaseSelect
                         options={ImageModelOptions}
                         value={ImageModel}
                         onChange={handleImageModelChange}
+                        onClickItem={ ()=> setAuto(false)}
                         title='选择模型：'
                         withTitleDesc={true}
+                        mask={auto}
                     />
                 ):(
+                    // 视频模型选择
                     <BaseSelect
                     options={videoModelOptions}
                     value={VideoModel}
                     onChange={handleVideoModelChange}
+                    onClickItem={ ()=>{
+                        
+                        setAuto(false);
+                        console.log('lqq auto', auto);
+                    }}
                     title='选择模型：'
                     withTitleDesc={true}
+                    mask={auto}
                 />
                 )}
-                
+                {/* 清晰度选择 */}
                 {claritySelectVisible && (
                     <BaseSelect
                         options={agentMode === 'image' ? imageResolutionOptions : videoResolutionOptions}
                         value={resolution}
                         onChange={setResolution}
+                        onClickItem={ ()=> setAuto(false)}
                         title='选择清晰度'
+                        mask={auto}
                     />
                 )}
             </div>        

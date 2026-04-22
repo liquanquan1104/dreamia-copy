@@ -19,6 +19,7 @@ export interface BaseRadioGroupProps
   itemAlign?: 'vertical' | 'horizontal'; // 图标文字排列方向
   title?: string; // 标题
   fontSize?: number; // 字体大小
+  mask?: boolean; // 是否显示遮罩背景
 }
 
 
@@ -28,6 +29,8 @@ export default function BaseRadioGroup({
     itemAlign='vertical',
     title='',
     fontSize=14,
+    mask=false,
+    // onChange,
     ...rest
 }: BaseRadioGroupProps) {
     return (
@@ -36,24 +39,27 @@ export default function BaseRadioGroup({
             {title && <div className={styles['title']}>{title}</div>}
         </div>
         <RadioGroup 
+            // onChange={onChange}
             type={type}
             {...rest}
             className={styles['radio-group']}
+            // style={mask ? {backgroundColor: '#fbfbfb'} : undefined}
         >
             {options.map(item => (
                 <Radio key={item.value} value={item.value} disabled={item.disabled}>
                     {item.render ? (
                         item.render(item)
                     ) : (
-                        <div 
+                        <div
                             style={{
-                                flexDirection: itemAlign === 'vertical' ? 'column' : 'row', 
+                                flexDirection: itemAlign === 'vertical' ? 'column' : 'row',
+                                color: mask ? '#939597' : undefined
                             }}
                             className={styles['radio-option']}
                         >
                             {item.ratio ? (
                                 <div className={styles['ratio-icon-container']}>
-                                    <div className={styles['ratio-icon']} style={{ aspectRatio: item.ratio }}/>
+                                    <div className={styles['ratio-icon']} style={{ aspectRatio: item.ratio, borderColor: mask ? '#939597' : undefined }}/>
                                 </div>
                             ): item.icon }
                             <span style={{fontSize: fontSize}}>{item.label}</span>
