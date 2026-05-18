@@ -1,3 +1,4 @@
+import React from 'react';
 import style from './index.module.less'
 import { IconCrossStroked, IconSmallTriangleRight, IconPlusStroked } from '@douyinfe/semi-icons';
 
@@ -7,7 +8,7 @@ interface ResourceCardProps {
   addable?: boolean;
   src?: string;
   onClick?: () => void;
-  onDelete?: () => void;
+  onDelete?: (event: React.MouseEvent) => void;
 }
 
 export default function ResourceCard(props: ResourceCardProps) {
@@ -16,7 +17,7 @@ export default function ResourceCard(props: ResourceCardProps) {
       <div className={style['card']}>
         <img src={props.src} />
       
-        <div className={style['delete-icon']}>
+        <div className={style['delete-icon']} onClick={props.onDelete}>
           <IconCrossStroked style={{fontSize: 8, color: '#fff'}} />
         </div>
         
@@ -26,7 +27,7 @@ export default function ResourceCard(props: ResourceCardProps) {
         <IconSmallTriangleRight style={{fontSize: 20}} />
       </div>}
       {props.addable &&<div className={style['right-bottom-icon']}>
-        <IconPlusStroked style={{fontSize: 20}} />
+        <IconPlusStroked style={{fontSize: 14}} />
       </div>}
       
     </div>
