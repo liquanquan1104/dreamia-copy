@@ -62,6 +62,7 @@
         )
       }
       </div>
+      {dropdownVisible && <div className={style['dropdown-fixed']}>Agent模式</div>}
       <div>即刻造梦！</div>
     </div>
   )

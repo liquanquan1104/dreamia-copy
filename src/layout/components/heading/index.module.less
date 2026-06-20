@@ -32,30 +32,34 @@
 .dropdown { 
     background: transparent; 
     border-radius: 12px; 
-    
+    position: absolute;
 }
 
-.glow {
-  position: absolute;
-  top: -60px;
-  left: 50%;
-  transform: translateX(-50%);
+// .glow {
+//   position: absolute;
+//   top: -60px;
+//   left: 50%;
+//   transform: translateX(-50%);
 
-  width: 300px;
-  height: 360px;
-  border-radius: 80px;
-  backdrop-filter: blur(40px);
-  -webkit-backdrop-filter: blur(40px);
+//   width: 300px;
+//   height: 360px;
+//   border-radius: 80px;
+//   backdrop-filter: blur(40px);
+//   -webkit-backdrop-filter: blur(40px);
 
-  background: rgba(255, 255, 255, 0.15);
+//   background: rgba(255, 255, 255, 0.15);
 
-  mask-image: radial-gradient(
-    ellipse at center,
-    rgba(0, 0, 0, 0.6) 25%,
-    rgba(0, 0, 0, 0) 100%
-  );
-  z-index: 1;
-  pointer-events: none;
+//   mask-image: radial-gradient(
+//     ellipse at center,
+//     rgba(0, 0, 0, 0.6) 25%,
+//     rgba(0, 0, 0, 0) 100%
+//   );
+//   z-index: 1;
+//   pointer-events: none;
+// }
+
+.dropdown-fixed {
+  color: transparent;
 }
 
 /* 每一项 */
@@ -66,6 +70,7 @@
   color:#546571;
   padding-bottom: 5px; 
   z-index: 10;
+  white-space: nowrap;
   &:hover {
     color: #00a1c3;
   }

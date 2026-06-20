@@ -1,0 +1,78 @@
+.entry-card {
+    flex: 1;
+    height: 76px;
+    // min-width: 212px;
+    border-radius: 24px;
+    border: 1px solid #f4f4f4;
+    padding: 16px 0 16px 16px;
+    cursor: pointer;
+    background-color: #ffffff;
+    position: relative;
+    overflow: hidden;
+
+    .default-content {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        position: absolute;
+        transition: opacity 0.24s ease, visibility 0.24s ease;
+    }
+    //  {
+    //     display: flex;
+    //     flex-direction: column;
+    //     color: #0f1418;
+    //     align-items: center;
+    //     justify-content: flex-start;
+    // }
+
+    .entry-card-image {
+        width: 44px;
+        height: 44px;
+        
+    }
+    .entry-card-info,.hover-content {
+        display: flex;
+        flex-direction: column;
+        white-space: nowrap;
+        margin-left: 10px;
+        gap: 6px;
+    }
+
+    .hover-content {
+        position: absolute;
+        transition: opacity 0.4s ease, visibility 0.4s ease;
+        opacity: 0;
+        visibility: hidden;
+    }
+    &:hover {
+        .default-content {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .hover-content {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
+    .entry-card-title,.hover-title {
+        font-size: 14px;
+        line-height: 18px;
+        font-weight: 500;
+        color: #0f1418;
+    }
+    .hover-title {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        // background-color: #f9fbfc;
+        border-radius: 20px;
+        // box-shadow: -20px 1px 50px 30px rgba(24, 80, 153, 0.06);
+    }
+    .entry-card-description,.hover-description {
+        font-size: 12px;
+        line-height: 12px;
+        font-weight: 400;
+        color: #929ca5;
+    }
+}
