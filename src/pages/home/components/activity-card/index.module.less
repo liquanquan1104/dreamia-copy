@@ -1,0 +1,37 @@
+.activity-card {
+    width: 100%;
+    cursor: pointer;
+    .activity-card-header img {
+        width: 100%;
+        aspect-ratio: 720/303;
+        object-fit: cover;
+        display: block;
+    }
+    .activity-card-content {
+        display: flex;
+        flex-direction: column;
+        margin-top: 12px;
+        padding: 0 8px;
+        width: 100%;
+
+        .activity-card-title {
+            width: 100%;
+            margin-bottom: 4px;
+            font-size: 14px;
+            line-height: 22px;
+            font-weight: 500;
+            color: #0f1418;
+            text-overflow: ellipsis;
+            overflow:hidden;
+            white-space: nowrap;
+        }
+        .activity-card-desc {
+            font-size: 12px;
+            line-height: 20px;
+            color: #546571;
+            overflow:hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+    }
+}
