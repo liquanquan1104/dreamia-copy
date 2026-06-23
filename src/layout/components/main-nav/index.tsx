@@ -1,6 +1,7 @@
 import { Button, Input, Tabs, TabPane } from '@douyinfe/semi-ui';
 import styles from './index.module.less';
 import { IconSearch } from '@douyinfe/semi-icons';
+import ActivitiesContent from '@/pages/home/components/activities-content';
 
 export default function MainNav() {
     return (
@@ -18,6 +19,8 @@ export default function MainNav() {
                         }
                         />
                 }
+                // style={{ margin: '18px 0' }}
+                className={styles['main-nav-tabs']}
             >
                 <TabPane tab="发现" itemKey="found">
                     发现
@@ -26,7 +29,7 @@ export default function MainNav() {
                     短片
                 </TabPane>
                 <TabPane tab="活动" itemKey="activity">
-                    活动
+                    <ActivitiesContent />
                 </TabPane>
             </Tabs>
         </div>
