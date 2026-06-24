@@ -8,3 +8,7 @@ export const ActivityImages = import.meta.glob(
   { eager: true }
 );
 
+export const ShortsVideos = import.meta.glob(
+  '@/assets/short_video/*',
+  { eager: true }
+);

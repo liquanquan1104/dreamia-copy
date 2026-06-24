@@ -2,12 +2,14 @@ import { Button, Input, Tabs, TabPane } from '@douyinfe/semi-ui';
 import styles from './index.module.less';
 import { IconSearch } from '@douyinfe/semi-icons';
 import ActivitiesContent from '@/pages/home/components/activities-content';
+import ShortsContent from '@/pages/home/components/shorts-content';
 
 export default function MainNav() {
     return (
         <div className={styles['main-nav']}>
             <Tabs 
                 type="button" 
+                contentStyle={{ marginTop: 12 }}
                 tabBarExtraContent={
                     <Input 
                         placeholder="印章制作" 
@@ -26,7 +28,7 @@ export default function MainNav() {
                     发现
                 </TabPane>
                 <TabPane tab="短片" itemKey="shorts">
-                    短片
+                    <ShortsContent />
                 </TabPane>
                 <TabPane tab="活动" itemKey="activity">
                     <ActivitiesContent />
