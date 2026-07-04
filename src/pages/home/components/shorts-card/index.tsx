@@ -3,13 +3,13 @@ import styles from './index.module.less';
 import { IconHeartStroked } from '@douyinfe/semi-icons';
 
 type ShortsCardProps = {
-    avatar: string;
-    userName: string;
-    shorts: string;
-    likes: number;
-    duration: string;
-    title?: string;
-    description?: string;
+    avatar: string; // 用户头像
+    userName: string; // 用户名
+    shorts: string; // 短片 URL
+    likes: number; // 点赞数
+    duration: string; // 时长
+    title?: string; // 标题
+    description?: string; // 描述
 }
 
 export default function ShortsCard(props: ShortsCardProps) {

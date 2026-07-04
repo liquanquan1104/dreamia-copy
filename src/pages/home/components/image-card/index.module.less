@@ -1,0 +1,68 @@
+.image-card {
+    position: relative;
+    width: 100%;
+    // height: auto;
+    overflow: hidden;
+    cursor: pointer;
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+
+    &:hover .image-card-info {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .image-card-info {
+        position: absolute;
+        left: 0px;
+        bottom: 0px;
+        padding: 16px 12px 4px;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        gap: 6px;
+        color: rgb(245,251,255);
+        visibility: hidden;
+        transition: opacity 0.24s ease, visibility 0.24s ease;
+        opacity: 0;
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 6px 6px 0;
+
+            img {
+                width: 16px;
+                height: 16px;
+                border-radius: 50%;
+            }
+            .user-name {
+                font-size: 12px;
+                line-height: 20px;
+                font-weight: 500;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+        }
+        .operation {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+
+            .like-info {
+                display: flex;
+                align-items: center;
+
+                span {
+                    font-size: 14px;
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+}

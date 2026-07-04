@@ -1,0 +1,23 @@
+.custom-carousel {
+    width: 100%;
+    padding-bottom: 42.08%;
+    height: 0;
+    position: relative;
+
+    :global {
+        .semi-carousel {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .carousel-extra {
+        position: absolute;
+        bottom: 16px;
+        left: 16px;
+        z-index: 10;
+    }
+}

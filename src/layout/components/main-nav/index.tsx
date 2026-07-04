@@ -3,6 +3,7 @@ import styles from './index.module.less';
 import { IconSearch } from '@douyinfe/semi-icons';
 import ActivitiesContent from '@/pages/home/components/activities-content';
 import ShortsContent from '@/pages/home/components/shorts-content';
+import FounderTab from '@/pages/home/components/founder-tab';
 
 export default function MainNav() {
     return (
@@ -25,7 +26,7 @@ export default function MainNav() {
                 className={styles['main-nav-tabs']}
             >
                 <TabPane tab="发现" itemKey="found">
-                    发现
+                    <FounderTab />
                 </TabPane>
                 <TabPane tab="短片" itemKey="shorts">
                     <ShortsContent />
