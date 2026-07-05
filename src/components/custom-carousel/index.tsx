@@ -9,13 +9,14 @@ type CarouselProps = {
      * @param activeIndex 当前显示的图片下标（从 0 开始）
      */
     extra?: (activeIndex: number) => React.ReactNode;
+    className?: string;
 }
 
-export default function CustomCarousel({ imageList, extra }: CarouselProps) {
+export default function CustomCarousel({ imageList, extra, className }: CarouselProps) {
     const [activeIndex, setActiveIndex] = useState(0);
 
     return (
-        <div className={styles['custom-carousel']}>
+        <div className={`${styles['custom-carousel']} ${className}`}>   
             <Carousel
                 activeIndex={activeIndex}
                 onChange={(current) => setActiveIndex(current)}
