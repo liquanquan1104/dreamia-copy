@@ -49,15 +49,15 @@ export default function ShortsContent() {
         >
             <Masonry gutter="15px">
                 {displayVideos.map((video, index) => (
-            <ShortsCard
-                key={index}
-                avatar={userAvatar}
-                userName="用户1"
-                shorts={video.default}
-                likes={100}
-                duration="1:00"
-                title="标题1标题1标题1标题1标题1标题1标题1标题1标题1标题1标题1"
-                description="描述1述1述1述1述1述1述1述1述1述1述1述1述1述1述1述1述1述1述1述1述1"
+                <ShortsCard
+                    key={index}
+                    avatar={userAvatar}
+                    userName={`用户${index}`}
+                    shorts={video.default}
+                    likes={100}
+                    duration="1:00"
+                    title={`标题${index}`}
+                    description="描述1述1述1述1述1述1述1述1述1述1述1述1述1述1述1述1述1述1述1述1述1"
             />
          ))}
         </Masonry>

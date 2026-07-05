@@ -4,10 +4,16 @@
     // height: auto;
     overflow: hidden;
     cursor: pointer;
+    
 
     img {
         width: 100%;
         height: auto;
+        transition: all 0.24s ease;
+        &:hover {
+            transform: scale(1.05);
+            overflow: hidden;
+        }
     }
 
     &:hover .image-card-info {

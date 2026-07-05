@@ -2,9 +2,15 @@ import styles from './index.module.less';
 import CustomCarousel from '@/components/custom-carousel';
 import { ActivityImages, FounderPageImages } from '@/utils/resource';
 import ImageCard from '../image-card'
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import MasonryPosition from '@/components/masonry-position';
+import useImageMetadata from '@/hooks/useImageMetadata';
+import useColumnCount from '@/hooks/useColumnCount';
+import type { FeedItem } from '@/types/image';
+import useMasonryLayout from '@/hooks/useMasonryLayout';
 
-const imageList = (Object.values(ActivityImages) as { default: string }[])
+// 轮播图图片
+const CarouselImageList = (Object.values(ActivityImages) as { default: string }[])
     .slice(0, 5)
     .map((item) => item.default);
 
@@ -18,6 +24,41 @@ export default function FounderTab() {
     const loadingRef = useRef(false);
     const hasMore = displayImageList.length < founderImageList.length;
     const loadRef = useRef<HTMLDivElement>(null);
+    // 加载图片元数据
+    const imageMetaList = useImageMetadata(
+        useMemo(
+            () => Object.values(FounderPageImages) as { default: string }[],
+            []
+        )
+    );
+    // 加载轮播图图片元数据
+    const carouselImageMetaList = useImageMetadata(
+        useMemo(
+            () => Object.values(ActivityImages) as { default: string }[],
+            []
+        )
+    );
+
+    // 加入轮播图图片
+    const feedList: FeedItem[] = [
+        {
+            type: "hero",
+            images: CarouselImageList,
+            span: 2,
+            height: carouselImageMetaList[0]?.height ?? 0,
+            width: carouselImageMetaList[0]?.width ?? 0,
+        },
+        ...imageMetaList.map((item): FeedItem => ({
+            type: "image",
+            url: item.url,
+            width: item.width,
+            height: item.height,
+        })),
+    ];
+    const FoundTabRef = useRef<HTMLDivElement>(null);
+    const { columnCount, containerWidth } = useColumnCount(FoundTabRef);
+    const gap = 2;
+    const { layoutItems, containerHeight } = useMasonryLayout(feedList, containerWidth, columnCount, gap);
 
     // 用 useRef 锁防止重复触发（不依赖 state，避免循环）
     const loadMore = useCallback(() => {
@@ -72,26 +113,29 @@ export default function FounderTab() {
         </div>
     );
   };
+
     return (
-        <div className={styles['founder-tab']}>
-            <CustomCarousel
-                imageList={imageList}
-                className={styles['carousel']}
-                extra={renderExtra}
+        <div className={styles['founder-tab']} ref={FoundTabRef}>
+            <MasonryPosition
+                items={layoutItems}
+                containerHeight={containerHeight}
+                renderItem={(item) => (
+                    item.type === "hero" ? (
+                        <CustomCarousel
+                            imageList={item.images}
+                            extra={renderExtra}
+                        />
+                    ) : (
+                        <ImageCard
+                            key={item.url}
+                            imageUrl={item.url}
+                            userAvatar={item.url}
+                            userName={'用户'}
+                            likeCount={123}
+                        />
+                    )
+                )}
             />
-            {/* ✅ 关键：用 displayImageList 而非 founderImageList */}
-            {displayImageList.map((image, index) => (
-                <ImageCard
-                    key={image}                          // ✅ 用图片 url 作为 key
-                    imageUrl={image}
-                    userAvatar={image}
-                    userName={`用户${index}`}
-                    likeCount={123}
-                />
-            ))}
-            <div ref={loadRef} className={styles['load-more']}>
-                {hasMore ? '加载中...' : '已经到底了'}
-            </div>
         </div>
-    )
+    );
 }
