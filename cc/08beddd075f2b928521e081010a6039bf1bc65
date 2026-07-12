@@ -1,0 +1,658 @@
+src/layout/components/prompt-input/components/mode-select/index.tsx
+  s_ec011e74353df2::t_53340938ec22c8 6
+src/layout/components/prompt-input/types.ts
+  s_6a632d01ce1c5e::t_2d0c02491bac89 42
+  s_8bea3a257de6ae::t_1285a351568dcd 17
+  s_912c19ca60b1ce::t_1991515b065bd4 6 gitai:{"mixed_line_ranges":[{"Single":6}],"operations":[]}
+  s_d79e11ff4d02f3::t_6d2ab2aa505c1e 44
+  s_20e275e8d131e5::t_1859660d75da23 18
+  s_17a50f082bd8f8::t_90c7dadfac287d 45
+  s_2ae3e99cba474e::t_a574fcb97e91aa 10
+  s_5cd1e03b6afa8a::t_b328a58dda8ddf 23
+  s_c4269bd42d30e7::t_0460ac86656631 11
+  s_aae6234564211a::t_dee6675a45155f 35
+  s_55d40ec292f1a0::t_a895e803ed027a 43
+  s_30fc2ad111396c::t_282f06a555de82 16 gitai:{"mixed_line_ranges":[{"Single":16}],"operations":[]}
+  s_07a7b204ed4749::t_c5cb0665a15f23 41
+  s_c6ab1379540b8b::t_4e362c70d6b3f0 14
+  s_eda9f4162ee737::t_1ab6db10e852f4 12
+  s_7b31428fd7f3cf::t_af22c5a5dd26a3 31-33,38-39
+  s_4e49526ea07b1f::t_b05415528e2892 7-8 gitai:{"mixed_line_ranges":[{"Single":8}],"operations":[]}
+  s_86f67e5ce9b8dc::t_41659ddd4b168b 28-29 gitai:{"mixed_line_ranges":[{"Range":[28,29]}],"operations":[]}
+  s_7181296e0ecf61::t_89cac472c74370 13,15 gitai:{"mixed_line_ranges":[{"Single":15}],"operations":[]}
+  s_b255512f8777ed::t_cf9968c1fdb8d2 9
+  s_d0f8aa65ec0d70::t_377bdad20849ca 30 gitai:{"mixed_line_ranges":[{"Single":30}],"operations":[]}
+  s_d886a183313a78::t_b430389207bbe9 5 gitai:{"mixed_line_ranges":[{"Single":5}],"operations":[]}
+  h_ebaa165b1d547d 20-22,24-25,27,36-37 gitai:{"mixed_line_ranges":[{"Range":[36,37]}],"operations":[]}
+  s_6ae75bb530cbb1::t_cd189ac308a30c 34
+  s_d886a183313a78::t_5f97125ddcd85d 2-4
+  s_17a50f082bd8f8::t_619582d05d6a8d 46
+src/layout/components/prompt-input/prompt-input-area/index.module.less
+  h_ebaa165b1d547d 5,8,15-16
+src/layout/components/prompt-input/prompt-input-area/index.tsx
+  s_ac508d046b23bc::t_99d1a3cbb4eb83 7 gitai:{"mixed_line_ranges":[{"Single":7}],"operations":[]}
+  s_f82f33ba092f3a::t_89b2a03b9570ad 62
+  h_ebaa165b1d547d 63,67
+  s_ac508d046b23bc::t_b42255bb567c74 8-9
+src/layout/components/prompt-input/input-tool-bar/index.module.less
+  s_2eace61ec23d17::t_17c5a49c686dbf 14
+  s_5a1592cb6d769f::t_5a2afce7f81a29 15
+  s_3beb3ee3b6bd23::t_7b787ebac0d1f2 59
+  s_2eace61ec23d17::t_37757ad0725ecd 13
+src/layout/mainLayout.module.less
+  h_ebaa165b1d547d 15,26
+  s_a33e1e8f4f8814::t_ba4068160ad9a1 25 gitai:{"mixed_line_ranges":[{"Single":25}],"operations":[]}
+  s_98ebee50bdab08::t_4570c5a8d318f1 27
+src/pages/home/hooks/useMode.tsx
+  h_ebaa165b1d547d 3-4
+  s_d690bdfd370efc::t_95b9d4b7e61787 10
+  s_d690bdfd370efc::t_48823ef56fd7c9 9
+src/layout/components/prompt-input/index.module.less
+  s_7ecdf9cbe080bf::t_e85bb67d852aee 8
+  h_ebaa165b1d547d 10
+  s_7ecdf9cbe080bf::t_19c4cf300fc7a6 7
+src/layout/components/prompt-input/config.ts
+  s_5aa12ecfbebf1b::t_fe71b071b6ac9b 9,14,17,21,26,29,33,38,40-41,45,47,49-50,54,59,61-64,66,71,73-74,78,83,85-86
+  h_ebaa165b1d547d 65,67-70,72 gitai:{"mixed_line_ranges":[{"Single":65},{"Single":67},{"Single":70},{"Single":72}],"operations":[]}
+  s_5aa12ecfbebf1b::t_abce4679865ee2 6-8
+  s_5aa12ecfbebf1b::t_e93f7c6c83cd1b 10-13
+  s_5aa12ecfbebf1b::t_e7ca55c040da6b 15-16
+  s_5aa12ecfbebf1b::t_236d8e4eaf1dad 18-20
+  s_5aa12ecfbebf1b::t_78ca6d7fdb8d10 22-25
+  s_5aa12ecfbebf1b::t_e50cba44cdb871 27-28
+  s_5aa12ecfbebf1b::t_9d26e2be7f129a 30-32
+  s_5aa12ecfbebf1b::t_9d1d7ef24a3518 34-37
+  s_5aa12ecfbebf1b::t_b4fe80390464d0 39
+  s_5aa12ecfbebf1b::t_e659afdca7c9bf 42-44
+  s_5aa12ecfbebf1b::t_a867d11b411368 46
+  s_5aa12ecfbebf1b::t_bb204e4c285470 48
+  s_5aa12ecfbebf1b::t_81a6a4fd4fd29d 51-53
+  s_5aa12ecfbebf1b::t_9f86066facd539 55-58
+  s_5aa12ecfbebf1b::t_d9d13dcc7d37c8 60
+  s_5aa12ecfbebf1b::t_0c4ea186df179b 75-77
+  s_5aa12ecfbebf1b::t_b373efef34c2aa 79-82
+  s_5aa12ecfbebf1b::t_9a33241279a903 84
+  s_5aa12ecfbebf1b::t_955b310c4fe292 87
+src/types/constants.ts
+  s_472d0461849837::t_2e79c68b68a254 1
+  s_0459d396825d1e::t_581a63b1fda69f 25-26
+src/layout/components/prompt-input/index.tsx
+  h_ebaa165b1d547d 4,9 gitai:{"mixed_line_ranges":[{"Single":4},{"Single":9}],"operations":[]}
+  s_50662b44c30bd0::t_63a5a9bf3af7a0 12
+  s_859a12ff66be6e::t_cc9fa1f42857ed 8
+src/layout/components/general-panel/index.module.less
+  s_4ff7ad116c3b9d::t_6641e708725ebf 9
+  s_ab9fdd5e1c02dd::t_232aacc3cf427c 7
+  h_ebaa165b1d547d 8,10-11
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "cc08beddd075f2b928521e081010a6039bf1bc65",
+  "prompts": {},
+  "humans": {
+    "h_ebaa165b1d547d": {
+      "author": "ByteDance <lihuan.010@bytedance.com>"
+    }
+  },
+  "sessions": {
+    "s_0459d396825d1e": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-2f0ea4da-d557-491e-88a5-f6e08f145bbb",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    },
+    "s_07a7b204ed4749": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-230b7f7e-d9f6-4148-ab40-9ba07b7062ea",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    },
+    "s_17a50f082bd8f8": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-e8bbfd41-fac3-481b-8bf2-6088a3d328e5",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    },
+    "s_20e275e8d131e5": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-b2217c74-3b5b-4e06-a5a7-7dffc78ae4fa",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    },
+    "s_2ae3e99cba474e": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-3e892622-7f1e-49b4-86c8-fd8a6c0c1507",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    },
+    "s_2eace61ec23d17": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-d3f82dda-4a37-4272-b506-9db398ab4cea",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    },
+    "s_30fc2ad111396c": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-72cd0b32-764a-4c86-ba97-0115e093a8c8",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    },
+    "s_3beb3ee3b6bd23": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-8070790a-e59f-4ef9-a84d-1ec52d1e06a9",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    },
+    "s_472d0461849837": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-f93183fd-ccee-4e17-90f4-e20ffae0f206",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    },
+    "s_4e49526ea07b1f": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-f2bf389b-6da5-4183-b19e-8a7ef6ac6d54",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    },
+    "s_4ff7ad116c3b9d": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-5c229b6f-88b9-4665-8660-aefbcd06ac2f",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    },
+    "s_50662b44c30bd0": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-74c6ed40-e1de-4748-83ac-d3f765be22fc",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    },
+    "s_55d40ec292f1a0": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-af0ecd1d-4f98-4180-8209-50c14841d29b",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    },
+    "s_5a1592cb6d769f": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-e894cb4e-d8e4-47aa-b5f6-d9a1e3b0cc6e",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    },
+    "s_5aa12ecfbebf1b": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-fd12ebae-5258-47ca-85be-6ae2f7bf1838",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    },
+    "s_5cd1e03b6afa8a": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-19f108f2-3011-4b6b-989a-8bdddad5b09a",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    },
+    "s_6a632d01ce1c5e": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-938067a2-4cbc-4293-8a2f-1c4bfafb4a84",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    },
+    "s_6ae75bb530cbb1": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-8f319d6e-e38d-417d-9019-53f7931cd85b",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    },
+    "s_7181296e0ecf61": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-16186f4b-be45-45b3-b18b-f250e7e5ea73",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    },
+    "s_7b31428fd7f3cf": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-64110cb7-04f6-4ff9-bd50-f45134334ec6",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    },
+    "s_7ecdf9cbe080bf": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-6f277a0d-eba9-4926-a141-b5494c164a2c",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    },
+    "s_859a12ff66be6e": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-392afdbc-2812-41ca-a61a-1b922ffd845c",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    },
+    "s_86f67e5ce9b8dc": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-b89d17da-f602-445e-8a7a-9af704eef618",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    },
+    "s_8bea3a257de6ae": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-9163249e-1cca-4033-89bb-e529eb1d8f85",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    },
+    "s_912c19ca60b1ce": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-148e9f29-75ef-4223-b8a2-7817a484df80",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    },
+    "s_98ebee50bdab08": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-d7616676-330c-4137-a994-4f784e3b0189",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    },
+    "s_a33e1e8f4f8814": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-d25581e4-7894-4afd-b4fe-51f03ad107a4",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    },
+    "s_aae6234564211a": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-e31cbdc4-cba5-4bfe-8b97-56c3ed7ea5e3",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    },
+    "s_ab9fdd5e1c02dd": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-30b297d2-6529-40cf-8c16-76c252f240e8",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    },
+    "s_ac508d046b23bc": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-29049ade-44aa-4a4b-8cfd-94b8956140aa",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    },
+    "s_b255512f8777ed": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-96f22f48-4c88-4a78-9b91-78222b4cf20f",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    },
+    "s_c4269bd42d30e7": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-8af41635-b7ed-4ea2-8d28-18c3e2adbb2b",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    },
+    "s_c6ab1379540b8b": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-9ef88d05-263c-4887-b2c9-165486452c0a",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    },
+    "s_d0f8aa65ec0d70": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-4780605f-2525-4cd6-84fd-f8a7307a5d84",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    },
+    "s_d690bdfd370efc": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-f5f9b03f-871d-45cc-8d0b-bfa6bce7f442",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    },
+    "s_d79e11ff4d02f3": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-af3c3225-11aa-4a41-becc-986e8c4888f6",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    },
+    "s_d886a183313a78": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-9605c2f2-4ce1-4915-b0a2-faab70c2ef96",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    },
+    "s_ec011e74353df2": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-057c82d0-df47-42d1-8606-3046bbdcee66",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    },
+    "s_eda9f4162ee737": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-05698b7a-c9ce-4eef-8bb9-ecd36e9636b4",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    },
+    "s_f82f33ba092f3a": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-f3ef03a2-31fe-4671-ab10-783cd603d96d",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    }
+  },
+  "attestation_metadata": {
+    "src/layout/components/prompt-input/config.ts": [
+      {
+        "hash": "h_ebaa165b1d547d",
+        "line_ranges": [
+          {
+            "Single": 65
+          },
+          {
+            "Range": [
+              67,
+              70
+            ]
+          },
+          {
+            "Single": 72
+          }
+        ],
+        "mixed_line_ranges": [
+          {
+            "Single": 65
+          },
+          {
+            "Single": 67
+          },
+          {
+            "Single": 70
+          },
+          {
+            "Single": 72
+          }
+        ],
+        "operations": []
+      }
+    ],
+    "src/layout/components/prompt-input/index.tsx": [
+      {
+        "hash": "h_ebaa165b1d547d",
+        "line_ranges": [
+          {
+            "Single": 4
+          },
+          {
+            "Single": 9
+          }
+        ],
+        "mixed_line_ranges": [
+          {
+            "Single": 4
+          },
+          {
+            "Single": 9
+          }
+        ],
+        "operations": []
+      }
+    ],
+    "src/layout/components/prompt-input/prompt-input-area/index.tsx": [
+      {
+        "hash": "s_ac508d046b23bc::t_99d1a3cbb4eb83",
+        "line_ranges": [
+          {
+            "Single": 7
+          }
+        ],
+        "mixed_line_ranges": [
+          {
+            "Single": 7
+          }
+        ],
+        "operations": []
+      }
+    ],
+    "src/layout/components/prompt-input/types.ts": [
+      {
+        "hash": "s_912c19ca60b1ce::t_1991515b065bd4",
+        "line_ranges": [
+          {
+            "Single": 6
+          }
+        ],
+        "mixed_line_ranges": [
+          {
+            "Single": 6
+          }
+        ],
+        "operations": []
+      },
+      {
+        "hash": "s_30fc2ad111396c::t_282f06a555de82",
+        "line_ranges": [
+          {
+            "Single": 16
+          }
+        ],
+        "mixed_line_ranges": [
+          {
+            "Single": 16
+          }
+        ],
+        "operations": []
+      },
+      {
+        "hash": "s_4e49526ea07b1f::t_b05415528e2892",
+        "line_ranges": [
+          {
+            "Range": [
+              7,
+              8
+            ]
+          }
+        ],
+        "mixed_line_ranges": [
+          {
+            "Single": 8
+          }
+        ],
+        "operations": []
+      },
+      {
+        "hash": "s_86f67e5ce9b8dc::t_41659ddd4b168b",
+        "line_ranges": [
+          {
+            "Range": [
+              28,
+              29
+            ]
+          }
+        ],
+        "mixed_line_ranges": [
+          {
+            "Range": [
+              28,
+              29
+            ]
+          }
+        ],
+        "operations": []
+      },
+      {
+        "hash": "s_7181296e0ecf61::t_89cac472c74370",
+        "line_ranges": [
+          {
+            "Single": 13
+          },
+          {
+            "Single": 15
+          }
+        ],
+        "mixed_line_ranges": [
+          {
+            "Single": 15
+          }
+        ],
+        "operations": []
+      },
+      {
+        "hash": "s_d0f8aa65ec0d70::t_377bdad20849ca",
+        "line_ranges": [
+          {
+            "Single": 30
+          }
+        ],
+        "mixed_line_ranges": [
+          {
+            "Single": 30
+          }
+        ],
+        "operations": []
+      },
+      {
+        "hash": "s_d886a183313a78::t_b430389207bbe9",
+        "line_ranges": [
+          {
+            "Single": 5
+          }
+        ],
+        "mixed_line_ranges": [
+          {
+            "Single": 5
+          }
+        ],
+        "operations": []
+      },
+      {
+        "hash": "h_ebaa165b1d547d",
+        "line_ranges": [
+          {
+            "Range": [
+              20,
+              22
+            ]
+          },
+          {
+            "Range": [
+              24,
+              25
+            ]
+          },
+          {
+            "Single": 27
+          },
+          {
+            "Range": [
+              36,
+              37
+            ]
+          }
+        ],
+        "mixed_line_ranges": [
+          {
+            "Range": [
+              36,
+              37
+            ]
+          }
+        ],
+        "operations": []
+      }
+    ],
+    "src/layout/mainLayout.module.less": [
+      {
+        "hash": "s_a33e1e8f4f8814::t_ba4068160ad9a1",
+        "line_ranges": [
+          {
+            "Single": 25
+          }
+        ],
+        "mixed_line_ranges": [
+          {
+            "Single": 25
+          }
+        ],
+        "operations": []
+      }
+    ]
+  },
+  "remote_transcripts": {}
+}
