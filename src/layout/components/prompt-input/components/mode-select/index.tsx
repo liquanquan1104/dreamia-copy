@@ -3,14 +3,15 @@ import type { GenerateMode } from '@/types/constants';
 import { MODE_OPTIONS } from '@/types/constants';
 import useMode from '@/pages/home/hooks/useMode';
 import style from './index.module.less'
-import { IconElementStroked, IconUserCircleStroked, IconImageStroked, IconMusicNoteStroked, IconUserStroked, IconVideoDouyinStroked } from '@douyinfe/semi-icons';
+import { IconCustomerSupport, IconElementStroked, IconUserCircleStroked, IconImageStroked, IconMusicNoteStroked, IconUserStroked, IconVideoDouyinStroked } from '@douyinfe/semi-icons';
 
 const LOGO_MAP: Record<string, React.ReactNode> = {
     agent: <IconUserCircleStroked />,
     image: <IconImageStroked />,
     video: <IconVideoDouyinStroked />,
     digital_person: <IconUserStroked />,
-    audio: <IconMusicNoteStroked />,
+    music: <IconMusicNoteStroked />,
+    voice: <IconCustomerSupport/>,
     action: <IconElementStroked />,
 };
 

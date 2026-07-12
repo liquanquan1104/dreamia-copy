@@ -4,6 +4,9 @@ import { IconSonicStroked } from '@douyinfe/semi-icons';
 import ResourceCard from '../components/resource-upload/resource-card'
 import { Upload } from '@douyinfe/semi-ui';
 import { useState } from 'react';
+import type { PromptModeConfig } from '../types';
+
+
 
 // 简单定义 fileList 项的类型，避免导入问题
 type FileItem = {
@@ -14,7 +17,8 @@ type FileItem = {
   file?: File;
 };
 
-export default function PromptInputArea() {
+export default function PromptInputArea(props: { modeConfig: PromptModeConfig }) {
+  const { modeConfig } = props;
   const [file, setFile] = useState<FileItem>();
 
   const handleChange = (data: { currentFile: FileItem; fileList: FileItem[] }) => {
@@ -55,12 +59,12 @@ export default function PromptInputArea() {
         </Upload>
       </div>
       <div className={style['prompt-input-content']}>
-        Tiptap输入框
-        <EmptyCard
+        {modeConfig.placeholder}
+        {/* <EmptyCard
               toolTip='角色'
               text='角色'
               icon={<IconSonicStroked style={{fontSize: 16}} />}
-            />
+            /> */}
       </div>
     </div>
   );

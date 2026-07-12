@@ -1,4 +1,4 @@
-import { IconElementStroked, IconFaceuLogo, IconImageStroked, IconMusicNoteStroked, IconUserStroked, IconVideoDouyinStroked } from '@douyinfe/semi-icons';
+import { IconElementStroked, IconFaceuLogo, IconImageStroked, IconMusicNoteStroked, IconUserStroked, IconVideoDouyinStroked, IconCustomerSupport } from '@douyinfe/semi-icons';
 
 export const MODE_OPTIONS = [
     {
@@ -22,9 +22,14 @@ export const MODE_OPTIONS = [
         logo: IconUserStroked,
     },
     {
-        label: '配音生成',
-        value: 'audio',
+        label: '音乐生成',
+        value: 'music',
         logo: IconMusicNoteStroked,
+    },
+    {
+        label: '配音生成',
+        value: 'voice',
+        logo: IconCustomerSupport,
     },
     {
         label: '动作模仿',

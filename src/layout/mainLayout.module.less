@@ -12,6 +12,7 @@
 
  .main-content {
     flex: 1;
+    min-width: 0;
     overflow: auto;
     background-color: #f8f9fa; 
 
@@ -21,9 +22,9 @@
     }
     .main-content-container {
       flex: 99999;
-      min-width: 950px;
-     
-      padding: 0 60px;
+      min-width: 718px;
+      box-sizing: border-box;
+      padding: 0 clamp(26px, 5vh, 60px);
     }
  }
  .banner-info {
