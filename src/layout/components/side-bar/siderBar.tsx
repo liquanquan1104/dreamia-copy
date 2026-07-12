@@ -7,8 +7,9 @@ import { useNavigate } from 'react-router-dom';
 import { Button, Tooltip, Popover, Toast } from '@douyinfe/semi-ui';
 import SideSheet from './components/sideSheet';
 import { useState } from 'react';
+import cls from 'classnames';
 
-export default function SiderBar(){
+export default function SiderBar({ className }: { className?: string }) {
     const navigate = useNavigate();
     const [visible, setVisible] = useState(false);
     // const [popoverVisible, setPopoverVisible] = useState(false);
@@ -25,7 +26,7 @@ export default function SiderBar(){
         }
     };
     return (
-        <div className={style.sidebar}>
+        <div className={cls(style.sidebar, className)}>
             {/* 顶部图标 */}
             <div className={style['top-icon']}>
                 <img src={logo} alt="logo" onClick={()=>navigate('/')} />

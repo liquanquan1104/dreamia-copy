@@ -2,15 +2,29 @@
   display: flex;
   height: 100vh;
   background-color: #f8f9fa;
+
+  .horizontal-sidebar {
+    flex: 0 0 52px;
+    padding: 20px 12px 8px;
+  }
  }
+
 
  .main-content {
     flex: 1;
     overflow: auto;
     background-color: #f8f9fa; 
-   //  f8e2e2
-    max-width: 1295px;
-    margin: 0 auto;
+
+    .left-space,
+    .right-space {
+      flex: 1;
+    }
+    .main-content-container {
+      flex: 99999;
+      min-width: 950px;
+     
+      padding: 0 60px;
+    }
  }
  .banner-info {
     background: linear-gradient(90deg,#f7f7ab,#b4ebf7);
