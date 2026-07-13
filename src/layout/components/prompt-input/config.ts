@@ -79,7 +79,7 @@ export const PROMPT_MODE_CONFIG: Record<GenerateMode, PromptModeConfig> = {
             enable: true,
             maxCount: 2,
             accept: ['image', 'video'],
-            slots: ['角色', '动作'],
+            slots: ['动作', '角色'],
         },
         toolbar: ['mode', 'actionModelSelect'],
         rightActions: ['duration', 'submit'],
