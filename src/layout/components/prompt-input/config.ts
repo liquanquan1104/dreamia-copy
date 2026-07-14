@@ -24,7 +24,7 @@ export const PROMPT_MODE_CONFIG: Record<GenerateMode, PromptModeConfig> = {
             accept: ['image'],
             addLabel: '上传图片',
         },
-        toolbar: ['mode', 'ImageModelSelect', 'imageRatio', 'textAugment'],
+        toolbar: ['mode', 'imageModelSelect', 'imageRatio', 'textAugment'],
         rightActions: ['imageCount', 'submit'],
     },
     video: {
@@ -36,7 +36,7 @@ export const PROMPT_MODE_CONFIG: Record<GenerateMode, PromptModeConfig> = {
             accept: ['video'],
             addLabel: '上传视频',
         },
-        toolbar: ['mode', 'VideoModelSelect', 'videoRatio', 'videoDuration'],
+        toolbar: ['mode', 'videoModelSelect', 'videoRatio', 'videoDuration'],
         rightActions: ['duration', 'submit'],
     },
     music: {
