@@ -1,0 +1,30 @@
+src/layout/components/prompt-input/config.ts
+  h_ebaa165b1d547d 27,39
+src/layout/components/prompt-input/input-tool-bar/renderTools.tsx
+  h_ebaa165b1d547d 4,18-49
+src/layout/components/prompt-input/input-tool-bar/components/voice-recongnize-button/index.tsx
+  h_ebaa165b1d547d 1-10
+src/layout/components/prompt-input/input-tool-bar/components/creativity-button/index.tsx
+  h_ebaa165b1d547d 1-22
+src/layout/components/prompt-input/index.tsx
+  h_ebaa165b1d547d 13
+src/layout/components/prompt-input/input-tool-bar/index.tsx
+  h_ebaa165b1d547d 2-5,8-10,13,20-24,26-36
+src/layout/components/prompt-input/types.ts
+  h_ebaa165b1d547d 6,9
+src/layout/components/prompt-input/input-tool-bar/components/inspiration-search-button/index.tsx
+  h_ebaa165b1d547d 1-16
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "2c541537d8cd9575107cedc789404c3381c628cd",
+  "prompts": {},
+  "humans": {
+    "h_ebaa165b1d547d": {
+      "author": "ByteDance <lihuan.010@bytedance.com>"
+    }
+  },
+  "attestation_metadata": {},
+  "remote_transcripts": {}
+}
