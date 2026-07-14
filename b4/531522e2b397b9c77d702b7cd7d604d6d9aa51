@@ -1,0 +1,78 @@
+src/layout/components/prompt-input/input-tool-bar/components/agent-auto-tool/index.tsx
+  s_0fb256b797218c::t_ef17f93a46548b 9-47
+  s_9a503187d15441::t_2401c195c4df4d 7
+  s_9a503187d15441::t_438fe4764d5cbd 4-6
+src/layout/components/prompt-input/input-tool-bar/index.tsx
+  h_ebaa165b1d547d 4,6,20
+src/layout/components/prompt-input/input-tool-bar/components/agent-auto-tool/inedx.module.less
+  h_ebaa165b1d547d 1-30
+src/layout/components/prompt-input/input-tool-bar/renderTools.tsx
+  s_07aa48b649fdf4::t_afef9591f39f95 15
+  s_16510650f12ee1::t_8d47514d77eab5 3 gitai:{"mixed_line_ranges":[{"Single":3}],"operations":[]}
+  s_16510650f12ee1::t_29d6a54ced8a08 1-2
+  s_07aa48b649fdf4::t_9ce9ed709fbd88 16-18
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "b4531522e2b397b9c77d702b7cd7d604d6d9aa51",
+  "prompts": {},
+  "humans": {
+    "h_ebaa165b1d547d": {
+      "author": "ByteDance <lihuan.010@bytedance.com>"
+    }
+  },
+  "sessions": {
+    "s_07aa48b649fdf4": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-44f2a4a6-c685-4e62-8cc5-8bbd764daf37",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    },
+    "s_0fb256b797218c": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-ead4fd96-88fa-41b5-8dd8-c12742cc3f46",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    },
+    "s_16510650f12ee1": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-8934e2f0-320c-400d-9e6f-abd146ebcf38",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    },
+    "s_9a503187d15441": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-fd1e2344-d08d-41df-aee6-7887f6256b2c",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    }
+  },
+  "attestation_metadata": {
+    "src/layout/components/prompt-input/input-tool-bar/renderTools.tsx": [
+      {
+        "hash": "s_16510650f12ee1::t_8d47514d77eab5",
+        "line_ranges": [
+          {
+            "Single": 3
+          }
+        ],
+        "mixed_line_ranges": [
+          {
+            "Single": 3
+          }
+        ],
+        "operations": []
+      }
+    ]
+  },
+  "remote_transcripts": {}
+}
