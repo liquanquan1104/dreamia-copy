@@ -10,7 +10,7 @@ export default function PromptInput() {
   return (
     <div className={style['prompt-input']}>
       <PromptInputArea modeConfig={config} />
-      <InputToolBar modeConfig={PROMPT_MODE_CONFIG[mode]}/>
+      <InputToolBar modeConfig={config}/>
     </div>
   )
 }
