@@ -1,0 +1,33 @@
+src/layout/components/prompt-input/index.tsx
+  h_ebaa165b1d547d 13
+src/layout/components/prompt-input/input-tool-bar/index.module.less
+  s_9f11717cc89dfd::t_f066f58be0cc8d 23
+  s_9f11717cc89dfd::t_2f9f4dcfa05d0d 22
+src/layout/components/main-nav/index.module.less
+  h_ebaa165b1d547d 6
+src/pages/home/components/quick-entry-group/index.module.less
+  h_ebaa165b1d547d 5,7-10
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "6a14eda604d04fe9920f9e39942f228738696e54",
+  "prompts": {},
+  "humans": {
+    "h_ebaa165b1d547d": {
+      "author": "ByteDance <lihuan.010@bytedance.com>"
+    }
+  },
+  "sessions": {
+    "s_9f11717cc89dfd": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-9b21cd3b-75eb-4a54-9a62-e90653c8add8",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    }
+  },
+  "attestation_metadata": {},
+  "remote_transcripts": {}
+}
