@@ -1,0 +1,62 @@
+src/layout/components/prompt-input/input-tool-bar/components/agent-preference-card/index.tsx
+  h_ebaa165b1d547d 37,47,64,74,82-89,101 gitai:{"mixed_line_ranges":[{"Single":101}],"operations":[]}
+  s_45fc05c63e373e::t_d7ceeec2db57d3 125
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "86725ae165cd05a49c44b90b6a1306c80bc14b7d",
+  "prompts": {},
+  "humans": {
+    "h_ebaa165b1d547d": {
+      "author": "ByteDance <lihuan.010@bytedance.com>"
+    }
+  },
+  "sessions": {
+    "s_45fc05c63e373e": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-70ee4ccb-0f9b-4902-95c6-7628216608c1",
+        "model": "default"
+      },
+      "human_author": "ByteDance <lihuan.010@bytedance.com>"
+    }
+  },
+  "attestation_metadata": {
+    "src/layout/components/prompt-input/input-tool-bar/components/agent-preference-card/index.tsx": [
+      {
+        "hash": "h_ebaa165b1d547d",
+        "line_ranges": [
+          {
+            "Single": 37
+          },
+          {
+            "Single": 47
+          },
+          {
+            "Single": 64
+          },
+          {
+            "Single": 74
+          },
+          {
+            "Range": [
+              82,
+              89
+            ]
+          },
+          {
+            "Single": 101
+          }
+        ],
+        "mixed_line_ranges": [
+          {
+            "Single": 101
+          }
+        ],
+        "operations": []
+      }
+    ]
+  },
+  "remote_transcripts": {}
+}
