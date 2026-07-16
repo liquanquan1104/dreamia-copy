@@ -23,6 +23,55 @@ export type AgentPreferenceInfo = {
     videoScale: string;
 }
 
+const imageScaleOption = [
+        { value: 'smart', label: '智能', icon: <IconIndenpentCornersStroked style={{fontSize: 15}}/> },
+        { value: '21:9', label: '21:9', ratio: '21/9' },
+        { value: '16:9', label: '16:9', ratio: '16/9' },
+        { value: '3:2', label: '3:2', ratio: '3/2' },
+        { value: '4:3', label: '4:3', ratio: '4/3' },
+        { value: '1:1', label: '1:1', ratio: '1/1' },
+        { value: '3:4', label: '3:4', ratio: '3/4' },
+        { value: '2:3', label: '2:3', ratio: '2/3' },
+        { value: '9:16', label: '9:16', ratio: '9/16' },
+];
+
+const videoScaleOption = [
+        { value: 'smart', label: '智能', icon: <IconIndenpentCornersStroked style={{fontSize: 15}}/> },
+        { value: '21:9', label: '21:9', ratio: '21/9' },
+        { value: '16:9', label: '16:9', ratio: '16/9' },
+        { value: '4:3', label: '4:3', ratio: '4/3' },
+        { value: '1:1', label: '1:1', ratio: '1/1' },
+        { value: '3:4', label: '3:4', ratio: '3/4' },
+        { value: '9:16', label: '9:16', ratio: '9/16' },
+    ]
+
+const ImageModelOptions = [
+        {value: 'Seedream 5.0 Lite', label: '图片5.0 Lite', tag: ['new'], img_url: 'src/assets/sd20_avg.svg', description: '指令响应更精准，生成效果更智能'},
+        {value: 'Seedream 4.6', label: '图片4.6', tag: ['new'], img_url: 'src/assets/sd20_avg.svg', description: '人像一致性保持更好，性价比更高'},
+        {value: 'Seedream 4.5', label: '图片4.5', img_url: 'src/assets/sd20_avg.svg', description: '强化一致性，风格与图文响应'},
+        {value: 'Seedream 4.0 Design', label: '图片4.1', img_url: 'src/assets/sd20_avg.svg', description: '更专业的创意、美学和一致性保持'},
+        {value: 'Seedream 4.0', label: '图片4.0', img_url: 'src/assets/sd20_avg.svg', description: '支持多图参考、系列组图生成'},
+        {value: 'Seedream 3.0', label: '图片3.1', img_url: 'src/assets/sd20_avg.svg', description: '丰富的美学多样性，画面更鲜明生动'},
+        {value: 'Seedream 3.0.0', label: '图片3.0', img_url: 'src/assets/sd20_avg.svg', description: '影视质感，文字更准，直出2K高清图'},
+           ]
+
+const VedioVIPTooltip = (
+        <div className={styles['tooltip']}>
+            此功能为会员专属
+            <span>开通会员</span>
+        </div>
+    );
+
+const videoModelOptions = [
+            {value: 'Seedance 2.0 Fast VIP', label: 'Seedance 2.0 Fast VIP', tag: ['✧','New'], img_url: 'src/assets/sd20_avg.svg', description: '极速推理，会员专属通道，音视文图均可参考（暂不支持真人人脸）', tooltip:VedioVIPTooltip},
+             {value: 'Seedance 2.0 VIP', label: 'Seedance 2.0 VIP', tag: ['✧','New'], img_url: 'src/assets/sd20_avg.svg', description: '全模态能力，会员专属通道，音视文图均可参考（暂不支持真人人脸）', tooltip:VedioVIPTooltip},
+             {value: 'Seedance 2.0 Fast', label: 'Seedance 2.0 Fast', tag: ['New'], img_url: 'src/assets/sd20_avg.svg', description: '高性价比，音视文图均可参考（暂不支持真人人脸）'},
+             {value: 'Seedance 2.0', label: 'Seedance 2.0', tag: ['限免1次','New'], img_url: 'src/assets/sd20_avg.svg', description: '全年王者，音视文图均可参考（暂不支持真人人脸）'},
+             {value: 'Seedance 1.5 Pro', label: 'Seedance 1.5 Pro', tag: ['New'], img_url: 'src/assets/sd20_avg.svg', description: '音画同出，全新体验'},
+             {value: 'Seedance 1.0', label: 'Seedance 1.0', tag: ['✧'], img_url: 'src/assets/sd20_avg.svg', description: '效果最佳，画质超清'},
+             {value: 'Seedance 1.0 Fast', label: 'Seedance 1.0 Fast', tag: ['New'], img_url: 'src/assets/sd20_avg.svg', description: 'Pro级表现，加量不加价'},
+        ]
+
 export default function AgentPreferenceCard({handleTransform}: {handleTransform: (info: AgentPreferenceInfo) => void}) {
     const [agentMode, setAgentMode] = useState<AgentMode>('image');
     const [auto, setAuto] = useState<boolean>(true);
@@ -34,12 +83,11 @@ export default function AgentPreferenceCard({handleTransform}: {handleTransform:
     const [claritySelectVisible, setClaritySelectVisible] = useState<boolean>(true);
     const [resolution, setResolution] = useState<string>(agentMode === 'image' ? '2K' : '720P');
 
-    const getDefaultResolution = (mode: AgentMode) => mode === 'image' ? '2K' : '720P';
+    // const getDefaultResolution = (mode: AgentMode) => mode === 'image' ? '2K' : '720P';
 
-    useEffect(() => {
-        setResolution(getDefaultResolution(agentMode));
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [agentMode]);
+    // TODO：后面重构 AgentPreferenceCard 时统一处理 useEffect 依赖和 options 抽离
+
+
 
     useEffect(() => {
         handleTransform({
@@ -50,37 +98,8 @@ export default function AgentPreferenceCard({handleTransform}: {handleTransform:
             imageScale: imageScaleOption.find(item => item.value === imageScale)?.label || imageScale,
             videoScale: videoScaleOption.find(item => item.value === videoScale)?.label || videoScale,
         });
-    }, [agentMode, auto, ImageModel, VideoModel, imageScale, videoScale]);
-    const imageScaleOption = [
-        { value: 'smart', label: '智能', icon: <IconIndenpentCornersStroked style={{fontSize: 15}}/> },
-        { value: '21:9', label: '21:9', ratio: '21/9' },
-        { value: '16:9', label: '16:9', ratio: '16/9' },
-        { value: '3:2', label: '3:2', ratio: '3/2' },
-        { value: '4:3', label: '4:3', ratio: '4/3' },
-        { value: '1:1', label: '1:1', ratio: '1/1' },
-        { value: '3:4', label: '3:4', ratio: '3/4' },
-        { value: '2:3', label: '2:3', ratio: '2/3' },
-        { value: '9:16', label: '9:16', ratio: '9/16' },
-];
-    const videoScaleOption = [
-        { value: 'smart', label: '智能', icon: <IconIndenpentCornersStroked style={{fontSize: 15}}/> },
-        { value: '21:9', label: '21:9', ratio: '21/9' },
-        { value: '16:9', label: '16:9', ratio: '16/9' },
-        { value: '4:3', label: '4:3', ratio: '4/3' },
-        { value: '1:1', label: '1:1', ratio: '1/1' },
-        { value: '3:4', label: '3:4', ratio: '3/4' },
-        { value: '9:16', label: '9:16', ratio: '9/16' },
-    ]
-    const ImageModelOptions = [
-        {value: 'Seedream 5.0 Lite', label: '图片5.0 Lite', tag: ['new'], img_url: 'src/assets/sd20_avg.svg', description: '指令响应更精准，生成效果更智能'},
-        {value: 'Seedream 4.6', label: '图片4.6', tag: ['new'], img_url: 'src/assets/sd20_avg.svg', description: '人像一致性保持更好，性价比更高'},
-        {value: 'Seedream 4.5', label: '图片4.5', img_url: 'src/assets/sd20_avg.svg', description: '强化一致性，风格与图文响应'},
-        {value: 'Seedream 4.0 Design', label: '图片4.1', img_url: 'src/assets/sd20_avg.svg', description: '更专业的创意、美学和一致性保持'},
-        {value: 'Seedream 4.0', label: '图片4.0', img_url: 'src/assets/sd20_avg.svg', description: '支持多图参考、系列组图生成'},
-        {value: 'Seedream 3.0', label: '图片3.1', img_url: 'src/assets/sd20_avg.svg', description: '丰富的美学多样性，画面更鲜明生动'},
-        {value: 'Seedream 3.0.0', label: '图片3.0', img_url: 'src/assets/sd20_avg.svg', description: '影视质感，文字更准，直出2K高清图'},
-           ]
-
+    }, [agentMode, auto, ImageModel, VideoModel, imageScale, videoScale, ImageModelOptions, videoModelOptions, imageScaleOption, videoScaleOption,handleTransform]);
+    
     const VedioResolutionIcon=(
         <span key={`hd-${auto}`} className={`${styles['resolution-icon']} ${auto ? styles['disabled'] : ''}`}>HD</span>
     )
@@ -96,26 +115,14 @@ export default function AgentPreferenceCard({handleTransform}: {handleTransform:
         {value: '2K', label: '高清 2K', icon: ImageResolutionIcon},
     ]
 
-    const VedioVIPTooltip = (
-        <div className={styles['tooltip']}>
-            此功能为会员专属
-            <span>开通会员</span>
-        </div>
-    );
+    
         
-    const videoModelOptions = [
-            {value: 'Seedance 2.0 Fast VIP', label: 'Seedance 2.0 Fast VIP', tag: ['✧','New'], img_url: 'src/assets/sd20_avg.svg', description: '极速推理，会员专属通道，音视文图均可参考（暂不支持真人人脸）', tooltip:VedioVIPTooltip},
-             {value: 'Seedance 2.0 VIP', label: 'Seedance 2.0 VIP', tag: ['✧','New'], img_url: 'src/assets/sd20_avg.svg', description: '全模态能力，会员专属通道，音视文图均可参考（暂不支持真人人脸）', tooltip:VedioVIPTooltip},
-             {value: 'Seedance 2.0 Fast', label: 'Seedance 2.0 Fast', tag: ['New'], img_url: 'src/assets/sd20_avg.svg', description: '高性价比，音视文图均可参考（暂不支持真人人脸）'},
-             {value: 'Seedance 2.0', label: 'Seedance 2.0', tag: ['限免1次','New'], img_url: 'src/assets/sd20_avg.svg', description: '全年王者，音视文图均可参考（暂不支持真人人脸）'},
-             {value: 'Seedance 1.5 Pro', label: 'Seedance 1.5 Pro', tag: ['New'], img_url: 'src/assets/sd20_avg.svg', description: '音画同出，全新体验'},
-             {value: 'Seedance 1.0', label: 'Seedance 1.0', tag: ['✧'], img_url: 'src/assets/sd20_avg.svg', description: '效果最佳，画质超清'},
-             {value: 'Seedance 1.0 Fast', label: 'Seedance 1.0 Fast', tag: ['New'], img_url: 'src/assets/sd20_avg.svg', description: 'Pro级表现，加量不加价'},
-        ]
+    
 
     const handleAgentModeChange = (e: RadioEvent) => {
         const newMode = e.target.value as AgentMode;
         setAgentMode(newMode);
+        setResolution(newMode === 'image' ? '2K' : '720P');
         if (newMode === 'video') {
             setClaritySelectVisible(VideoModel === 'Seedance 1.0 Fast' || VideoModel === 'Seedance 1.5 Pro');
         } else {
