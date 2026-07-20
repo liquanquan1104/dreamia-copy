@@ -41,3 +41,48 @@ export type PromptModeConfig = {
     toolbar: PromptToolKey[];
     rightActions: RightActionKey[];
 }
+
+// 图片模型
+export type ImageModel = 'Seedream 5.0 Lite' | 'Seedream 4.6' | 'Seedream 4.5' | 'Seedream 4.0 Design' | 'Seedream 4.0' | 'Seedream 3.0' | 'Seedream 3.0.0';
+
+// 图片比例
+export type ImageRatio = 'smart' | '21:9' | '16:9' | '3:2' | '4:3' | '1:1' | '3:4' | '2:3' | '9:16';
+
+// 图片分辨率
+export type ImageResolution = '1K' | '2K' | '4K';
+
+// 图片尺寸
+export type ImageSize = {
+    width: number;
+    height: number;
+}
+
+// @选择资源主体
+export type PromptResource = {
+    id: string;
+    title: string;
+    url: string;
+    mediaType: UploadResourceType;
+    file?: File;
+    duration?: number;
+}
+
+// 输入框中提到的资源
+export type PromptResourceMention = {
+    id: string;
+    type: 'resource';
+    resourceId: string;
+    label: string;
+    mediaType: UploadResourceType;
+}
+
+// 图片setting
+export type ImageSetting = {
+    prompt: string;
+    model: ImageModel;
+    ratio: ImageRatio;
+    resolution: ImageResolution;
+    size: ImageSize;
+    augment: boolean;
+    reference: PromptResourceMention[];
+}
