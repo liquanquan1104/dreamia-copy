@@ -2,6 +2,7 @@ import type {PromptToolKey} from '../types';
 import ModeSelect from '../components/mode-select';
 import AgentAutoTool from '../input-tool-bar/components/agent-auto-tool';
 import BaseButton from '@/components/base-button';
+import ImageModelTool from '../input-tool-bar/components/image-model-tool';
 
 
 
@@ -22,7 +23,7 @@ export function renderTools(toolKey: PromptToolKey) {
         case 'citeReference':
             return <BaseButton  text='@'/>
         case 'imageModelSelect':
-            return <BaseButton text='图片5.0 Pro'/>
+            return <ImageModelTool />
         case 'imageRatio':
             return <BaseButton text='9:11  1K'/>
         case 'textAugment':

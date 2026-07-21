@@ -37,13 +37,23 @@ export interface BaseSelectProps {
     options: SelectOption[];
     title?: string | React.ReactNode;
     withTitleDesc?: boolean;
+    needArrowIcon?: boolean;
     value: string;
     onChange: (value: string) => void;
     mask?: boolean;
     onClickItem?: () => void; 
 }
 
-export default function BaseSelect({ options, value, onChange, title, withTitleDesc, mask = false, onClickItem }: BaseSelectProps) {
+export default function BaseSelect({ 
+    options, 
+    value, 
+    onChange, 
+    title, 
+    withTitleDesc, 
+    mask = false, 
+    onClickItem,
+    needArrowIcon = false,
+}: BaseSelectProps) {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [selectedValue, setSelectedValue] = useState<string>(value);
     const renderSelectedItem = (optionNode: Record<string, unknown>) => {
@@ -56,7 +66,7 @@ export default function BaseSelect({ options, value, onChange, title, withTitleD
                 >
                 {option.icon ? option.icon : <IconBytedanceLogo style={{ fontSize: 16 }} />}
                 <span style={{fontSize: 12}}>{option.label}</span>
-                {isOpen ? <IconChevronDownStroked style={{ transform: 'rotate(180deg)', fontSize: 12 }} /> : <IconChevronDownStroked style={{ fontSize: 12 }} />}
+                { needArrowIcon && ( isOpen ? <IconChevronDownStroked style={{ transform: 'rotate(180deg)', fontSize: 12 }} /> : <IconChevronDownStroked style={{ fontSize: 12 }} /> )}
             </div>
         );
     };
