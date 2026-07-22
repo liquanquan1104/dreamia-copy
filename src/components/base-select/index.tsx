@@ -2,6 +2,8 @@ import { Select, Tooltip } from '@douyinfe/semi-ui';
 import styles from './index.module.less'
 import { IconBytedanceLogo, IconChevronDownStroked, IconTick } from '@douyinfe/semi-icons';
 import { useState } from 'react';
+import type { StyleProps } from '@/types/common';
+import cls from 'classnames';
 
 interface OptionRenderProps {
     label?: React.ReactNode;
@@ -33,7 +35,7 @@ export interface SelectOption {
 }
 
 // 组件Props
-export interface BaseSelectProps {
+export interface BaseSelectProps extends StyleProps {
     options: SelectOption[];
     title?: string | React.ReactNode;
     withTitleDesc?: boolean;
@@ -51,6 +53,8 @@ export default function BaseSelect({
     title, 
     withTitleDesc, 
     mask = false, 
+    className,
+    style,
     onClickItem,
     needArrowIcon = false,
 }: BaseSelectProps) {
@@ -124,15 +128,15 @@ export default function BaseSelect({
         );
 
         return (
-            <div className={styles['option-content']}>
+            <div className={cls(styles['option-content'], {[styles['option-selected']]: selected})}>
                 {tooltip ? (
                     <Tooltip content={tooltip} showArrow={false}>
                         {optionContent}
                     </Tooltip>
                 ) : (
-                    optionContent
+                    <div style={{ marginRight: 48 }}>{optionContent}</div>
                 )}
-                {selected && <IconTick style={{ fontSize: 16, color: '#0f1418' }} />}
+                {selected && <IconTick style={{ fontSize: 15, color: '#0F1418'}} />}
             </div>
         );
     };
@@ -142,13 +146,14 @@ export default function BaseSelect({
             <Select
                 value={value}
                 placeholder="请选择"
-                style={{ width: '100%', minHeight: 38 }}
+                style={{ width: '100%', minHeight: 38, ...style }}
                 onChange={(val) => onChange(val as string)}
                 renderSelectedItem={renderSelectedItem}
                 renderOptionItem={renderOptionItem}
                 showArrow={false}
                 onDropdownVisibleChange={(visible) => setIsOpen(visible)}
                 outerTopSlot={title ? outSlotNode : null}
+                className={className}
             >
                 {options.map((item) => (
                     <Select.Option
