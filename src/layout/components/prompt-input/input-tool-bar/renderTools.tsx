@@ -3,11 +3,16 @@ import ModeSelect from '../components/mode-select';
 import AgentAutoTool from '../input-tool-bar/components/agent-auto-tool';
 import BaseButton from '@/components/base-button';
 import ImageModelTool from '../input-tool-bar/components/image-model-tool';
+import ImageRatioTool from '../input-tool-bar/components/image-ratio-tool';
+import type { ImageSetting } from '../types';
 
-
-
-
-export function renderTools(toolKey: PromptToolKey) {
+export function renderTools(
+    toolKey: PromptToolKey,
+    ctx: {
+        imageSettings: ImageSetting;
+        updateImageSettings: (partial: Partial<ImageSetting>) => void;
+    }
+) {
      
     switch (toolKey) {
         case 'mode':
@@ -23,9 +28,15 @@ export function renderTools(toolKey: PromptToolKey) {
         case 'citeReference':
             return <BaseButton  text='@'/>
         case 'imageModelSelect':
-            return <ImageModelTool />
+            return <ImageModelTool 
+                model={ctx.imageSettings.model}
+                onChange={(val) => ctx.updateImageSettings({ model: val })}
+            />
         case 'imageRatio':
-            return <BaseButton text='9:11  1K'/>
+            return <ImageRatioTool 
+                imageSettings={ctx.imageSettings}
+                updateImageSettings={ctx.updateImageSettings}
+            />
         case 'textAugment':
             return <BaseButton  text='T,,'/>
         case 'videoModelSelect':

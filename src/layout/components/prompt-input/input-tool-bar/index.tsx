@@ -4,13 +4,16 @@ import type {PromptModeConfig } from '../types'
 import { renderTools } from './renderTools';
 import VoiceRecongnizeButton from './components/voice-recongnize-button';
 import BaseButton from '@/components/base-button';
+import type { ImageSetting } from '../types';
 
 type InputToolBarProps = {
-  modeConfig: PromptModeConfig
+  modeConfig: PromptModeConfig;
+  imageSettings: ImageSetting;
+  updateImageSettings: (partial: Partial<ImageSetting>) => void;
 }
 
 export default function InputToolBar(
-  {modeConfig}: InputToolBarProps
+  {modeConfig, imageSettings, updateImageSettings}: InputToolBarProps
 ) {
 
   return (
@@ -19,7 +22,10 @@ export default function InputToolBar(
         <div className={style['core-configure']}>
            {modeConfig.toolbar.map((toolKey)=>(
             <span key={toolKey}>
-              {renderTools(toolKey)}
+              {renderTools(toolKey, { 
+                imageSettings, 
+                updateImageSettings 
+              })}
             </span>
            ))}       
         </div>
