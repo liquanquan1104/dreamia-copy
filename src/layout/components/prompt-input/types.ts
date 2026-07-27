@@ -82,6 +82,7 @@ export type ImageSetting = {
     model: ImageModel;
     ratio: ImageRatio;
     resolution: ImageResolution;
+    imageNumber: number;
     size: ImageSize;
     augment: boolean;
     reference: PromptResourceMention[];

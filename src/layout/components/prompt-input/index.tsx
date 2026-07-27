@@ -15,6 +15,7 @@ export default function PromptInput() {
     model: 'Seedream 5.0 Lite',
     ratio: '9:16',
     resolution: '2K',
+    imageNumber: 4,
     size: {
       width: 1440,
       height: 2560,

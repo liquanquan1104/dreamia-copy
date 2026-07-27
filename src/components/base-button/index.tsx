@@ -11,10 +11,11 @@ export interface BaseButtonProps {
     onClick?: React.MouseEventHandler<HTMLButtonElement>; // 点击事件
     disabled?: boolean; // 是否禁用
     isActive?: boolean; // 是否激活状态
+    children?: React.ReactNode; // 自定义内容, 会覆盖text属性
 }
 
 const BaseButton = forwardRef<HTMLDivElement, BaseButtonProps>(
-  ({ icon, isChecked=false, text, style, onClick, disabled, isActive=true,}: BaseButtonProps, ref) => {
+  ({ icon, isChecked=false, text, style, onClick, disabled, isActive=true, children }: BaseButtonProps, ref) => {
     return (
         <div ref={ref}>
         <Button 
@@ -29,6 +30,7 @@ const BaseButton = forwardRef<HTMLDivElement, BaseButtonProps>(
                     {isChecked && <span className={styles['check-icon']} >✓</span>}
                 </div>
                 {text && <span className={styles['text']}>{text}</span>}
+                {children}
             </div>
         </Button>
         </div>

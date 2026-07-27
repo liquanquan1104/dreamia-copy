@@ -62,7 +62,7 @@ export default function BaseRadioGroup({
                                     <div className={styles['ratio-icon']} style={{ aspectRatio: item.ratio, borderColor: mask ? '#939597' : undefined }}/>
                                 </div>
                             ): item.icon }
-                            <span style={{fontSize: fontSize}}>{item.label}</span>
+                            <span className={styles['radio-label']} style={{fontSize: fontSize}}>{item.label}</span>
                         </div>
                     )}
                 </Radio>

@@ -34,3 +34,10 @@ export const videoScaleOptions: RadioOption[] = [
         { value: '3:4', label: '3:4', ratio: '3/4' },
         { value: '9:16', label: '9:16', ratio: '9/16' },
     ]
+
+export const resolutionOptions: RadioOption[] = [
+        { value: '2K', label: '高清 2K', },
+        { value: '4K', label: '超清 4K', },
+    ]
+    
+export const imageNumberOptions: RadioOption[] = Array.from({ length: 8 }, (_, i) => ({ value: i + 1, label: `${i + 1}`, }))
