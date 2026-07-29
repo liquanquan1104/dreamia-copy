@@ -1,7 +1,8 @@
 import type { ImageSetting } from '@/layout/components/prompt-input/types';
 import styles from './index.module.less';
 import { useState } from 'react';
-import { IconEyeOpenedStroked, IconEyeClosedSolidStroked } from '@douyinfe/semi-icons'
+import { IconEyeOpenedStroked, IconEyeClosedSolidStroked } from '@douyinfe/semi-icons';
+import { Input } from '@douyinfe/semi-ui';
 // /**
 //  * 图片尺寸输入框props
 //  * @param imageSettings 图片设置
@@ -18,32 +19,16 @@ export default function ImageSizeInput(
     { title = "尺寸", imageSettings, updateImageSettings }: ImageSizeInputProps
 ) {
     const [isBinding, setIsBinding] = useState(true);
-    const renderInput = (tag: string, value: number, onChange: (value: number) => void) => {
-        return (
-            <span className={styles[`${baseClassName}-input-wrapper`]}>
-                <span className={styles[`${baseClassName}-input-tag`]}>
-                    {tag}
-                </span>
-                <input
-                    className={styles[`${baseClassName}-input-content`]}
-                    value={value}
-                    onChange={(e) => onChange(Number(e.target.value))} />
-            </span>
-        )
-    }
     return (
-        <div className={styles[`${baseClassName}-wrapper`]}>
+        <div className={styles[`${baseClassName}`]}>
             <div className={styles[`${baseClassName}-title`]}>{title}</div>
             <div className={styles[`${baseClassName}-content`]}>
-                {renderInput('W', imageSettings.size.width, (width) =>
-                    updateImageSettings({ size: { ...imageSettings.size, width } })
-                )}
-                <span onClick={() => setIsBinding((prev) => !prev)}>
-                    {isBinding ? <IconEyeOpenedStroked /> : <IconEyeClosedSolidStroked />}
-                </span>
-                {renderInput('H', imageSettings.size.height, (height) =>
-                    updateImageSettings({ size: { ...imageSettings.size, height } })
-                )}
+                 <Input prefix="W" value={imageSettings.size.width} onChange={(value) => updateImageSettings({ size: { ...imageSettings.size, width: Number(value) } })} />
+                <div onClick={() => setIsBinding((prev) => !prev)} className={styles[`${baseClassName}-icon-wrapper`]}>
+                    {isBinding ? <IconEyeOpenedStroked className={styles[`${baseClassName}-icon`]} /> : <IconEyeClosedSolidStroked className={styles[`${baseClassName}-icon`]} />}
+                </div>
+                 <Input prefix="H" value={imageSettings.size.height} onChange={(value) => updateImageSettings({ size: { ...imageSettings.size, height: Number(value) } })} />
+                <span className={styles[`${baseClassName}-suffix`]}>PX</span>
             </div>
         </div>
     )

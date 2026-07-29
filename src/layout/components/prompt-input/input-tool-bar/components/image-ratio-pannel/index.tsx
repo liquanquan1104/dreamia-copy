@@ -2,6 +2,7 @@ import BaseRadioGroup  from '@/components/base-radio-group';
 import { imageScaleOptions, resolutionOptions, imageNumberOptions } from '@/layout/components/prompt-input/constant';
 import type { ImageSetting } from '@/layout/components/prompt-input/types';
 import styles from './index.module.less';
+import ImageSizeInput from './components/image-size-input';
 
 interface ImageRatioPannelProps {
     imageSettings: ImageSetting;
@@ -38,6 +39,11 @@ export default function ImageRatioPannel({
                     onChange={(e) => updateImageSettings({ imageNumber: e.target.value })}
                     title='选择图片数量：'
                     fontSize={12}
+                />
+                {/* 图片尺寸 */}
+                <ImageSizeInput
+                    imageSettings={imageSettings}
+                    updateImageSettings={updateImageSettings}
                 />
             </div>
         </div>

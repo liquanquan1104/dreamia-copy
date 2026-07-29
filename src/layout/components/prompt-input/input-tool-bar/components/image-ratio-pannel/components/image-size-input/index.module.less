@@ -1,0 +1,59 @@
+.image-size-input {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    &-title {
+        color: #536471a3;
+        font-size: 12px;
+    }
+    &-content {
+        display: flex;
+        flex-direction: row;
+        
+    }
+
+    &-icon-wrapper {
+        flex-shrink: 0;
+        width: 48px;
+        height: 36px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &:hover {
+            background-color: #EAEAEA;
+        }
+    }
+    &-icon {
+        font-size: 20px;
+        color: #48555fa3;
+    }
+    &-suffix {
+        flex-shrink: 0;
+        font-size: 12px;
+        font-weight: 500;
+        color: #536471;
+        width: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    :global(.semi-input-wrapper) {
+        --semi-color-fill-0: #F7F7F7;
+        --semi-color-fill-1: #F7F7F7;
+        flex: 1;
+        min-width: 0;
+        border-radius: 8px;
+        height: 36px;
+        font-size: 12px;
+    }
+    :global(.semi-input-default) {
+        font-size: 12px;
+    }
+    :global(.semi-input) {
+        text-align: right;
+    }
+    :global(.semi-input-wrapper-focus) {
+        --semi-color-focus-border:#f2efef;
+    }
+}
