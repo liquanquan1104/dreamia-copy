@@ -2,7 +2,8 @@ import type { ImageSetting } from '@/layout/components/prompt-input/types';
 import styles from './index.module.less';
 import { useState } from 'react';
 import { IconEyeOpenedStroked, IconEyeClosedSolidStroked } from '@douyinfe/semi-icons';
-import { Input } from '@douyinfe/semi-ui';
+import { Input, Tooltip } from '@douyinfe/semi-ui';
+import cls from 'classnames';
 // /**
 //  * 图片尺寸输入框props
 //  * @param imageSettings 图片设置
@@ -19,15 +20,45 @@ export default function ImageSizeInput(
     { title = "尺寸", imageSettings, updateImageSettings }: ImageSizeInputProps
 ) {
     const [isBinding, setIsBinding] = useState(true);
+    const [tipVisible, setTipVisible] = useState(false);
+    const disabled = imageSettings.ratio === 'smart';
     return (
         <div className={styles[`${baseClassName}`]}>
             <div className={styles[`${baseClassName}-title`]}>{title}</div>
+            {/* todo这里加禁用的toolTip */}
+            
             <div className={styles[`${baseClassName}-content`]}>
-                 <Input prefix="W" value={imageSettings.size.width} onChange={(value) => updateImageSettings({ size: { ...imageSettings.size, width: Number(value) } })} />
-                <div onClick={() => setIsBinding((prev) => !prev)} className={styles[`${baseClassName}-icon-wrapper`]}>
-                    {isBinding ? <IconEyeOpenedStroked className={styles[`${baseClassName}-icon`]} /> : <IconEyeClosedSolidStroked className={styles[`${baseClassName}-icon`]} />}
+                 <Input 
+                    disabled={disabled}
+                    prefix="W" 
+                    value={imageSettings.size.width} 
+                    onChange={(value) => updateImageSettings({ size: { ...imageSettings.size, width: Number(value) } })} />
+                <div 
+                    onClick={() => !disabled && setIsBinding((prev) => !prev)} 
+                    onMouseEnter={() => !disabled && setTipVisible(true)}
+                    onMouseLeave={() => setTipVisible(false)}
+                    className={cls(styles[`${baseClassName}-icon-wrapper`], { [styles[`${baseClassName}-icon-wrapper-disabled`]]: disabled })}   
+                >
+                    { 
+                        <Tooltip 
+                            content={isBinding ? '约束比例' : '解绑比例'} 
+                            className={styles[`${baseClassName}-icon-tooltip`]}
+                            trigger='custom'
+                            visible={tipVisible}
+                        >
+                            {isBinding && !disabled ? 
+                                    <IconEyeOpenedStroked className={styles[`${baseClassName}-icon`]} />
+                                : 
+                                    <IconEyeClosedSolidStroked className={styles[`${baseClassName}-icon`]} />
+                            }   
+                        </Tooltip>
+                        }
                 </div>
-                 <Input prefix="H" value={imageSettings.size.height} onChange={(value) => updateImageSettings({ size: { ...imageSettings.size, height: Number(value) } })} />
+                 <Input 
+                    disabled={disabled}
+                    prefix="H" 
+                    value={imageSettings.size.height} 
+                    onChange={(value) => updateImageSettings({ size: { ...imageSettings.size, height: Number(value) } })} />    
                 <span className={styles[`${baseClassName}-suffix`]}>PX</span>
             </div>
         </div>
