@@ -9,7 +9,11 @@
     &-content {
         display: flex;
         gap:1px;
-        
+        // 禁用态的 input 会吞掉鼠标事件，导致外层 Tooltip 收不到 hover。
+        // 让其鼠标事件穿透到父级 div，Tooltip 才能正常弹出。
+        :global(.semi-input-wrapper-disabled) {
+            pointer-events: none;
+        }
     }
 
     &-icon-wrapper {

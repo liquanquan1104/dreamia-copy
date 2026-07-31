@@ -7,11 +7,15 @@ import ImageSizeInput from './components/image-size-input';
 interface ImageRatioPannelProps {
     imageSettings: ImageSetting;
     updateImageSettings: (partial: Partial<ImageSetting>) => void;
+    isBinding: boolean;
+    updateBinding: (isBinding: boolean) => void;
 }
 const baseClassName = 'image-ratio-select';
 export default function ImageRatioPannel({
     imageSettings,
     updateImageSettings,
+    isBinding,
+    updateBinding,
 }: ImageRatioPannelProps) {
     return (
         <div className={styles[baseClassName]}>
@@ -44,6 +48,8 @@ export default function ImageRatioPannel({
                 <ImageSizeInput
                     imageSettings={imageSettings}
                     updateImageSettings={updateImageSettings}
+                    isBinding={isBinding}
+                    updateBinding={updateBinding}
                 />
             </div>
         </div>

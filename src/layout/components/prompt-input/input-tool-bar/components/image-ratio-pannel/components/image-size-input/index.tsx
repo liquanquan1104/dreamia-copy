@@ -1,6 +1,6 @@
 import type { ImageSetting } from '@/layout/components/prompt-input/types';
 import styles from './index.module.less';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { IconEyeOpenedStroked, IconEyeClosedSolidStroked } from '@douyinfe/semi-icons';
 import { Input, Tooltip } from '@douyinfe/semi-ui';
 import cls from 'classnames';
@@ -14,27 +14,84 @@ interface ImageSizeInputProps {
     title?: string;
     imageSettings: ImageSetting;
     updateImageSettings: (partial: Partial<ImageSetting>) => void;
+    isBinding: boolean;
+    updateBinding: (isBinding: boolean) => void;
 }
 const baseClassName = 'image-size-input'
 export default function ImageSizeInput(
-    { title = "尺寸", imageSettings, updateImageSettings }: ImageSizeInputProps
+    { title = "尺寸", imageSettings, updateImageSettings, isBinding, updateBinding }: ImageSizeInputProps
 ) {
-    const [isBinding, setIsBinding] = useState(true);
+    
     const [tipVisible, setTipVisible] = useState(false);
     const disabled = imageSettings.ratio === 'smart';
+    const getImageSizefromRatio = (ratio: string) => {
+        switch (ratio) {
+            case 'smart':
+                return { width: 2048, height: 2048 };
+            case '21:9':
+                return { width: 3024, height: 1296 };
+            case '16:9':
+                return { width: 2560, height: 1440 };
+            case '3:2':
+                return { width: 2496, height: 1664 };
+            case '4:3':
+                return { width: 2304, height: 1728 };   
+            case '1:1':
+                return { width: 2048, height: 2048 };
+            case '3:4':
+                return { width: 1728, height: 2304 };
+            case '2:3':
+                return { width: 1664, height: 2496 };
+            case '9:16':
+                return { width: 1440, height: 2560 };
+            default:
+                return { width: imageSettings.size.width, height: imageSettings.size.height };
+        }
+    }
+    // 切换比例时，把尺寸同步为该比例的预设值。对照表只在“选比例”时生效，
+    // 不会覆盖用户手动输入（手动输入只改 size、不改 ratio，故不会触发此 effect）。
+    useEffect(() => {
+        updateImageSettings({ size: getImageSizefromRatio(imageSettings.ratio) });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [imageSettings.ratio]);
+    // 把 "16:9" 解析成数值宽高比 16/9；无法解析时返回 null。
+    const getRatioValue = (ratio: string): number | null => {
+        const [w, h] = ratio.split(':').map(Number);
+        if (!w || !h) return null;
+        return w / h;
+    }
+    const handleSizeChange = (value: number, isWidth: boolean) => {
+        if (Number.isNaN(value)) return;
+        const ratioValue = getRatioValue(imageSettings.ratio);
+        // 未绑定比例、或比例无法解析（如 smart）时，自由修改单边。
+        if (!isBinding || ratioValue === null) {
+            updateImageSettings({
+                size: isWidth
+                    ? { ...imageSettings.size, width: value }
+                    : { ...imageSettings.size, height: value },
+            });
+            return;
+        }
+        // 绑定比例：改一边，另一边按比例联动。
+        if (isWidth) {
+            updateImageSettings({ size: { width: value, height: Math.round(value / ratioValue) } });
+        } else {
+            updateImageSettings({ size: { width: Math.round(value * ratioValue), height: value } });
+        }
+    }
     return (
         <div className={styles[`${baseClassName}`]}>
             <div className={styles[`${baseClassName}-title`]}>{title}</div>
             {/* todo这里加禁用的toolTip */}
-            
-            <div className={styles[`${baseClassName}-content`]}>
+            <Tooltip content={disabled ? '智能比例不支持更改尺寸' : ''} >
+                <div className={styles[`${baseClassName}-content`]}>
                  <Input 
                     disabled={disabled}
                     prefix="W" 
                     value={imageSettings.size.width} 
-                    onChange={(value) => updateImageSettings({ size: { ...imageSettings.size, width: Number(value) } })} />
+                    onChange={(value) => handleSizeChange(Number(value), true)} />
                 <div 
-                    onClick={() => !disabled && setIsBinding((prev) => !prev)} 
+                    onClick={() => !disabled && updateBinding(!isBinding)} 
                     onMouseEnter={() => !disabled && setTipVisible(true)}
                     onMouseLeave={() => setTipVisible(false)}
                     className={cls(styles[`${baseClassName}-icon-wrapper`], { [styles[`${baseClassName}-icon-wrapper-disabled`]]: disabled })}   
@@ -58,9 +115,10 @@ export default function ImageSizeInput(
                     disabled={disabled}
                     prefix="H" 
                     value={imageSettings.size.height} 
-                    onChange={(value) => updateImageSettings({ size: { ...imageSettings.size, height: Number(value) } })} />    
+                    onChange={(value) => handleSizeChange(Number(value), false)} />    
                 <span className={styles[`${baseClassName}-suffix`]}>PX</span>
-            </div>
+                </div>
+            </Tooltip>
         </div>
     )
 }
