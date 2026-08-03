@@ -17,6 +17,7 @@ export interface BaseRadioGroupProps
   extends Omit<React.ComponentProps<typeof RadioGroup>, 'options'> {
   options: RadioOption[];
   itemAlign?: 'vertical' | 'horizontal'; // 图标文字排列方向
+  iconPosition?: 'left' | 'right'; // 图标位置，仅在 itemAlign 为 horizontal 时生效
   title?: string; // 标题
   fontSize?: number; // 字体大小
   mask?: boolean; // 是否显示遮罩背景
@@ -27,6 +28,7 @@ export default function BaseRadioGroup({
     options,
     type='button',
     itemAlign='vertical',
+    iconPosition='left',
     title='',
     fontSize=14,
     mask=false,
@@ -52,7 +54,9 @@ export default function BaseRadioGroup({
                     ) : (
                         <div
                             style={{
-                                flexDirection: itemAlign === 'vertical' ? 'column' : 'row',
+                                flexDirection: itemAlign === 'vertical'
+                                    ? 'column'
+                                    : (iconPosition === 'right' ? 'row-reverse' : 'row'),
                                 color: mask ? '#939597' : undefined
                             }}
                             className={styles['radio-option']}

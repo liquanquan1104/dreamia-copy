@@ -1,0 +1,4 @@
+@import "tailwindcss";
+
+/* 显式声明要扫描的源码范围，确保按需生成工具类 */
+@source "../**/*.{ts,tsx}";

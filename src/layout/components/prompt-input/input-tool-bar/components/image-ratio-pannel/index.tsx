@@ -35,6 +35,8 @@ export default function ImageRatioPannel({
                     onChange={(e) => updateImageSettings({ resolution: e.target.value })}
                     title='选择分辨率：'
                     fontSize={12}
+                    itemAlign='horizontal'
+                    iconPosition='right'
                 />
                 {/* 图片数量 */}
                 <BaseRadioGroup

@@ -1,6 +1,6 @@
 import type { SelectOption } from '@/components/base-select';
 import type { RadioOption } from '@/components/base-radio-group';
-import { IconIndenpentCornersStroked } from '@douyinfe/semi-icons';
+import { IconIndenpentCornersStroked, IconStar } from '@douyinfe/semi-icons';
 
 export const ImageModelOptions: SelectOption[] = [
         {value: 'Seedream 5.0 Lite', label: '图片5.0 Lite', tag: ['new'], img_url: 'src/assets/sd20_avg.svg', description: '指令响应更精准，生成效果更智能'},
@@ -36,8 +36,9 @@ export const videoScaleOptions: RadioOption[] = [
     ]
 
 export const resolutionOptions: RadioOption[] = [
-        { value: '2K', label: '高清 2K', },
-        { value: '4K', label: '超清 4K', },
+        { value: '1K', label: '标清 1K', },
+        { value: '2K', label: '高清 2K', icon: <IconStar style={{fontSize: 12, color: '#06B8CC'}}/> },
+        { value: '4K', label: '超清 4K', icon: <IconStar style={{fontSize: 12, color: '#06B8CC'}}/> },
     ]
     
-export const imageNumberOptions: RadioOption[] = Array.from({ length: 8 }, (_, i) => ({ value: i + 1, label: `${i + 1}`, }))
+export const imageNumberOptions: RadioOption[] = Array.from({ length: 4 }, (_, i) => ({ value: i + 1, label: `${i + 1}`, }))

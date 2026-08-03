@@ -1,4 +1,4 @@
-import type { ImageSetting } from '@/layout/components/prompt-input/types';
+import type { ImageSetting, ImageResolution, ImageSize } from '@/layout/components/prompt-input/types';
 import styles from './index.module.less';
 import { useState, useEffect } from 'react';
 import { IconEyeOpenedStroked, IconEyeClosedSolidStroked } from '@douyinfe/semi-icons';
@@ -18,42 +18,50 @@ interface ImageSizeInputProps {
     updateBinding: (isBinding: boolean) => void;
 }
 const baseClassName = 'image-size-input'
+
+// 各比例在 2K 分辨率下的基准尺寸（宽高的“形状”）。
+const RATIO_BASE_SIZE_2K: Record<string, ImageSize> = {
+    smart: { width: 2048, height: 2048 },
+    '21:9': { width: 3024, height: 1296 },
+    '16:9': { width: 2560, height: 1440 },
+    '3:2': { width: 2496, height: 1664 },
+    '4:3': { width: 2304, height: 1728 },
+    '1:1': { width: 2048, height: 2048 },
+    '3:4': { width: 1728, height: 2304 },
+    '2:3': { width: 1664, height: 2496 },
+    '9:16': { width: 1440, height: 2560 },
+};
+
+// 分辨率作为整体缩放系数：以 2K 为基准，1K 减半、4K 翻倍。
+const RESOLUTION_SCALE: Record<ImageResolution, number> = {
+    '1K': 0.5,
+    '2K': 1,
+    '4K': 2,
+};
+
+// 由比例 + 分辨率共同决定尺寸：基准形状 × 分辨率缩放系数。
+const getImageSizeFromSetting = (ratio: string, resolution: ImageResolution): ImageSize => {
+    const base = RATIO_BASE_SIZE_2K[ratio];
+    if (!base) return { width: 2048, height: 2048 };
+    const scale = RESOLUTION_SCALE[resolution];
+    return {
+        width: Math.round(base.width * scale),
+        height: Math.round(base.height * scale),
+    };
+};
+
 export default function ImageSizeInput(
     { title = "尺寸", imageSettings, updateImageSettings, isBinding, updateBinding }: ImageSizeInputProps
 ) {
     
     const [tipVisible, setTipVisible] = useState(false);
     const disabled = imageSettings.ratio === 'smart';
-    const getImageSizefromRatio = (ratio: string) => {
-        switch (ratio) {
-            case 'smart':
-                return { width: 2048, height: 2048 };
-            case '21:9':
-                return { width: 3024, height: 1296 };
-            case '16:9':
-                return { width: 2560, height: 1440 };
-            case '3:2':
-                return { width: 2496, height: 1664 };
-            case '4:3':
-                return { width: 2304, height: 1728 };   
-            case '1:1':
-                return { width: 2048, height: 2048 };
-            case '3:4':
-                return { width: 1728, height: 2304 };
-            case '2:3':
-                return { width: 1664, height: 2496 };
-            case '9:16':
-                return { width: 1440, height: 2560 };
-            default:
-                return { width: imageSettings.size.width, height: imageSettings.size.height };
-        }
-    }
-    // 切换比例时，把尺寸同步为该比例的预设值。对照表只在“选比例”时生效，
-    // 不会覆盖用户手动输入（手动输入只改 size、不改 ratio，故不会触发此 effect）。
+    // 切换比例或分辨率时，把尺寸同步为对应的预设值。对照表只在“选比例/选分辨率”时生效，
+    // 不会覆盖用户手动输入（手动输入只改 size，不改 ratio / resolution，故不会触发此 effect）。
     useEffect(() => {
-        updateImageSettings({ size: getImageSizefromRatio(imageSettings.ratio) });
+        updateImageSettings({ size: getImageSizeFromSetting(imageSettings.ratio, imageSettings.resolution) });
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [imageSettings.ratio]);
+    }, [imageSettings.ratio, imageSettings.resolution]);
     // 把 "16:9" 解析成数值宽高比 16/9；无法解析时返回 null。
     const getRatioValue = (ratio: string): number | null => {
         const [w, h] = ratio.split(':').map(Number);
@@ -83,7 +91,7 @@ export default function ImageSizeInput(
         <div className={styles[`${baseClassName}`]}>
             <div className={styles[`${baseClassName}-title`]}>{title}</div>
             {/* todo这里加禁用的toolTip */}
-            <Tooltip content={disabled ? '智能比例不支持更改尺寸' : ''} >
+            {/* <Tooltip content={disabled ? '智能比例不支持更改尺寸' : ''} > */}
                 <div className={styles[`${baseClassName}-content`]}>
                  <Input 
                     disabled={disabled}
@@ -118,7 +126,7 @@ export default function ImageSizeInput(
                     onChange={(value) => handleSizeChange(Number(value), false)} />    
                 <span className={styles[`${baseClassName}-suffix`]}>PX</span>
                 </div>
-            </Tooltip>
+            {/* </Tooltip> */}
         </div>
     )
 }

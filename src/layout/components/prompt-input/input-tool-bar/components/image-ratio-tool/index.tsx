@@ -4,6 +4,7 @@ import type { ImageSetting } from '@/layout/components/prompt-input/types';
 import BaseButton from '@/components/base-button';
 import styles from './index.module.less';
 import { useState } from 'react';
+import { IconIndenpentCornersStroked, IconBottomLeftStroked } from '@douyinfe/semi-icons';
 
 const baseClassName = 'image-ratio-tool';
 interface ImageRatioToolProps {
@@ -17,9 +18,21 @@ export default function ImageRatioTool({
 }: ImageRatioToolProps) {
     const [isBinding, setIsBinding] = useState(true);
     const getRatioValue = () => {
-        if(imageSettings.ratio === 'smart') return smartRatio;
+        if(imageSettings.ratio === 'smart') {
+            return (
+                <div className="flex items-center gap-2">
+                    <IconIndenpentCornersStroked style={{fontSize: 13}} />
+                    <span>{smartRatio}</span>      
+                </div>
+            )
+        }  
         if(!isBinding) {
-            return imageSettings.size.width + ':' + imageSettings.size.height;
+            return (
+                <div className="flex items-center gap-2">
+                    <IconBottomLeftStroked style={{fontSize: 12}} />
+                    <span>{imageSettings.size.width + ':' + imageSettings.size.height}</span>
+                </div>
+            )
         };
         return imageSettings.ratio;
     }
