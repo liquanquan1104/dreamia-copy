@@ -26,7 +26,7 @@ export function renderTools(
                 <BaseButton text='使用技能' />
             )
         case 'citeReference':
-            return <BaseButton  text='@'/>
+            return <BaseButton  text='@ '/>
         case 'imageModelSelect':
             return <ImageModelTool 
                 model={ctx.imageSettings.model}
@@ -38,7 +38,10 @@ export function renderTools(
                 updateImageSettings={ctx.updateImageSettings}
             />
         case 'textAugment':
-            return <BaseButton  text='T,,'/>
+            return <BaseButton
+                text='T,,'
+                onClick={() => ctx.updateImageSettings({ prompt: `“${ctx.imageSettings.prompt ?? ''}”` })}
+            />
         case 'videoModelSelect':
             return <BaseButton text='即梦 Seedance 2.0 mini' />
         case 'videoReference':

@@ -1,5 +1,8 @@
 .base-button {
     height: 36px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
     background-color: #feffff !important;
     border: 1px solid #f3f4f4 !important;
     border-radius: 8px !important;
@@ -17,6 +20,16 @@
     color: #24292c !important;
     &:hover {
         color: #24292c !important;
+    }
+}
+// 弹层打开时保持深色背景（视觉等同 hover 态，但不依赖鼠标悬停）
+.button-highlighted {
+    background-color: #edeeee !important;
+    border: 1px solid #e6e6e6 !important;
+    color: #586774 !important;
+    &:hover {
+        background-color: #edeeee !important;
+        border: 1px solid #e6e6e6 !important;
     }
 }
 .content {

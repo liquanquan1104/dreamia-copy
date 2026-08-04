@@ -24,7 +24,7 @@ export const PROMPT_MODE_CONFIG: Record<GenerateMode, PromptModeConfig> = {
             accept: ['image'],
             addLabel: '上传图片',
         },
-        toolbar: ['mode', 'imageModelSelect', 'imageRatio', 'textAugment'],
+        toolbar: ['mode', 'imageModelSelect', 'imageRatio', 'textAugment', 'citeReference'],
         rightActions: ['imageCount', 'submit'],
     },
     video: {

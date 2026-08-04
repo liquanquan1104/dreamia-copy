@@ -4,7 +4,8 @@ import type { ImageSetting } from '@/layout/components/prompt-input/types';
 import BaseButton from '@/components/base-button';
 import styles from './index.module.less';
 import { useState } from 'react';
-import { IconIndenpentCornersStroked, IconBottomLeftStroked } from '@douyinfe/semi-icons';
+import { IconIndenpentCornersStroked, IconBottomLeftStroked, IconCarouselStroked } from '@douyinfe/semi-icons';
+import { resolutionOptions } from '@/layout/components/prompt-input/constant';
 
 const baseClassName = 'image-ratio-tool';
 interface ImageRatioToolProps {
@@ -17,6 +18,7 @@ export default function ImageRatioTool({
     updateImageSettings,
 }: ImageRatioToolProps) {
     const [isBinding, setIsBinding] = useState(true);
+    const [popoverVisible, setPopoverVisible] = useState(false);
     const getRatioValue = () => {
         if(imageSettings.ratio === 'smart') {
             return (
@@ -29,18 +31,26 @@ export default function ImageRatioTool({
         if(!isBinding) {
             return (
                 <div className="flex items-center gap-2">
-                    <IconBottomLeftStroked style={{fontSize: 12}} />
+                    <IconBottomLeftStroked style={{fontSize: 13}} />
                     <span>{imageSettings.size.width + ':' + imageSettings.size.height}</span>
                 </div>
             )
         };
-        return imageSettings.ratio;
+        return (
+            <div className="flex items-center gap-2">
+                <IconCarouselStroked style={{fontSize: 13}} />
+                <span>{imageSettings.ratio}</span>
+            </div>
+        )
     }
     const buttonContent = (
         <div className={styles[`${baseClassName}-content`]}>
             <span>{getRatioValue()}</span>
             <div className={styles[`${baseClassName}-divider`]} />
-            <span>{imageSettings.resolution}</span>
+            <span className="flex items-center gap-1">
+                {imageSettings.resolution}
+                {resolutionOptions.find((item) => item.value === imageSettings.resolution)?.icon}
+            </span>
             <div className={styles[`${baseClassName}-divider`]} />
             <span>{imageSettings.imageNumber}</span>
         </div>
@@ -49,8 +59,9 @@ export default function ImageRatioTool({
         <Popover
             content={<ImageRatioPannel imageSettings={imageSettings} updateImageSettings={updateImageSettings} isBinding={isBinding} updateBinding={setIsBinding} />}
             trigger="click"
+            onVisibleChange={setPopoverVisible}
         >
-            <BaseButton children={buttonContent} />
+            <BaseButton highlighted={popoverVisible} children={buttonContent} />
         </Popover>
     )
 }

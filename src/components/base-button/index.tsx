@@ -11,24 +11,31 @@ export interface BaseButtonProps {
     onClick?: React.MouseEventHandler<HTMLButtonElement>; // 点击事件
     disabled?: boolean; // 是否禁用
     isActive?: boolean; // 是否激活状态
+    highlighted?: boolean; // 是否高亮（如弹层打开时保持深色背景）
     children?: React.ReactNode; // 自定义内容, 会覆盖text属性
 }
 
 const BaseButton = forwardRef<HTMLDivElement, BaseButtonProps>(
-  ({ icon, isChecked=false, text, style, onClick, disabled, isActive=true, children }: BaseButtonProps, ref) => {
+  ({ icon, isChecked=false, text, style, onClick, disabled, isActive=true, highlighted=false, children }: BaseButtonProps, ref) => {
     return (
         <div ref={ref}>
         <Button 
           style={style} 
-          className={cls(styles['base-button'], { [styles['button-active']]: isActive })}
+          className={cls(
+            styles['base-button'],
+            { [styles['button-active']]: isActive },
+            { [styles['button-highlighted']]: highlighted }
+          )}
           onClick={onClick}
           disabled={disabled}  
           >
             <div className={styles['content']}>
-                <div className={styles['icon-wrapper']}>
-                    {icon}
-                    {isChecked && <span className={styles['check-icon']} >✓</span>}
-                </div>
+                {(icon || isChecked) && (
+                    <div className={styles['icon-wrapper']}>
+                        {icon}
+                        {isChecked && <span className={styles['check-icon']} >✓</span>}
+                    </div>
+                )}
                 {text && <span className={styles['text']}>{text}</span>}
                 {children}
             </div>

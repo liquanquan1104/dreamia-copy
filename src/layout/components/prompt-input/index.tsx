@@ -11,7 +11,7 @@ export default function PromptInput() {
   const { mode } = useMode();
   const config = PROMPT_MODE_CONFIG[mode];
   const [imageSettings, setImageSettings] = useState<ImageSetting>({
-    prompt: '',
+    prompt: '结合参考、输入文字或@参考内容,描述你想如何调整图片。',
     model: 'Seedream 5.0 Lite',
     ratio: '9:16',
     resolution: '2K',
@@ -32,7 +32,11 @@ export default function PromptInput() {
   console.log('lqq', imageSettings);
   return (
     <div className={style['prompt-input']}>
-      <PromptInputArea modeConfig={config} />
+      <PromptInputArea 
+        modeConfig={config} 
+        imageSettings={imageSettings}
+        // updateImageSettings={updateImageSettings}
+        />
       <InputToolBar 
         modeConfig={config} 
         imageSettings={imageSettings} 

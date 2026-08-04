@@ -1,9 +1,15 @@
 import style from './index.module.less'
 import ResourceTray from '../components/resource-tray'
-import type { PromptModeConfig } from '../types';
+import type { PromptModeConfig, ImageSetting } from '../types';
 
-export default function PromptInputArea(props: { modeConfig: PromptModeConfig }) {
-  const { modeConfig } = props;  
+interface PromptInputAreaProps {
+    modeConfig: PromptModeConfig;
+    imageSettings?: ImageSetting;
+    // updateImageSettings?: (partial: Partial<ImageSetting>) => void;
+}
+
+export default function PromptInputArea(props: PromptInputAreaProps) {
+  const { modeConfig, imageSettings } = props;  
   const uploadConfig = modeConfig.upload;
 
   return (
@@ -13,7 +19,7 @@ export default function PromptInputArea(props: { modeConfig: PromptModeConfig })
          <ResourceTray uploadConfig={uploadConfig} />
       </div>}
       <div className={style['prompt-input-content']}>
-        {modeConfig.placeholder}
+        {imageSettings?.prompt || modeConfig.placeholder}
       </div>
     </div>
   );
