@@ -1,15 +1,17 @@
 import style from './index.module.less'
 import ResourceTray from '../components/resource-tray'
 import type { PromptModeConfig, ImageSetting } from '../types';
+import type { RefObject } from 'react';
 
 interface PromptInputAreaProps {
     modeConfig: PromptModeConfig;
     imageSettings?: ImageSetting;
-    // updateImageSettings?: (partial: Partial<ImageSetting>) => void;
+    updateImageSettings: (partial: Partial<ImageSetting>) => void;
+    textareaRef?: RefObject<HTMLTextAreaElement | null>;
 }
 
 export default function PromptInputArea(props: PromptInputAreaProps) {
-  const { modeConfig, imageSettings } = props;  
+  const { modeConfig, imageSettings, updateImageSettings, textareaRef } = props;
   const uploadConfig = modeConfig.upload;
 
   return (
@@ -18,9 +20,13 @@ export default function PromptInputArea(props: PromptInputAreaProps) {
       <div className={style['prompt-input-resource']}>
          <ResourceTray uploadConfig={uploadConfig} />
       </div>}
-      <div className={style['prompt-input-content']}>
-        {imageSettings?.prompt || modeConfig.placeholder}
-      </div>
+      <textarea
+        ref={textareaRef}
+        className={style['prompt-input-content']}
+        value={imageSettings?.prompt ?? ''}
+        placeholder={modeConfig.placeholder}
+        onChange={(e) => updateImageSettings({ prompt: e.target.value })}
+      />
     </div>
   );
 }

@@ -3,7 +3,7 @@ import styles from './index.module.less';
 import cls from 'classnames';
 import { forwardRef } from 'react';
 
-export interface BaseButtonProps {
+export interface BaseButtonProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onClick'> {
     icon?: React.ReactNode; // 图标
     isChecked?: boolean; // 是否选中状态,选中的话图标上会加一个小勾
     text?: string; // 文本
@@ -16,9 +16,9 @@ export interface BaseButtonProps {
 }
 
 const BaseButton = forwardRef<HTMLDivElement, BaseButtonProps>(
-  ({ icon, isChecked=false, text, style, onClick, disabled, isActive=true, highlighted=false, children }: BaseButtonProps, ref) => {
+  ({ icon, isChecked=false, text, style, onClick, disabled, isActive=true, highlighted=false, children, ...rest }: BaseButtonProps, ref) => {
     return (
-        <div ref={ref}>
+        <div ref={ref} {...rest}>
         <Button 
           style={style} 
           className={cls(

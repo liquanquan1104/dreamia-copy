@@ -57,7 +57,13 @@ export default function ImageRatioTool({
     )
     return (
         <Popover
-            content={<ImageRatioPannel imageSettings={imageSettings} updateImageSettings={updateImageSettings} isBinding={isBinding} updateBinding={setIsBinding} />}
+            content={
+                <ImageRatioPannel 
+                    imageSettings={imageSettings} 
+                    updateImageSettings={updateImageSettings} 
+                    isBinding={isBinding} 
+                    updateBinding={setIsBinding} />
+            }
             trigger="click"
             onVisibleChange={setPopoverVisible}
         >

@@ -10,10 +10,11 @@ type InputToolBarProps = {
   modeConfig: PromptModeConfig;
   imageSettings: ImageSetting;
   updateImageSettings: (partial: Partial<ImageSetting>) => void;
+  insertQuotesAtCursor: () => void;
 }
 
 export default function InputToolBar(
-  {modeConfig, imageSettings, updateImageSettings}: InputToolBarProps
+  {modeConfig, imageSettings, updateImageSettings, insertQuotesAtCursor}: InputToolBarProps
 ) {
 
   return (
@@ -24,7 +25,8 @@ export default function InputToolBar(
             <span key={toolKey}>
               {renderTools(toolKey, { 
                 imageSettings, 
-                updateImageSettings 
+                updateImageSettings,
+                insertQuotesAtCursor
               })}
             </span>
            ))}       

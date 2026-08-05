@@ -4,13 +4,16 @@ import AgentAutoTool from '../input-tool-bar/components/agent-auto-tool';
 import BaseButton from '@/components/base-button';
 import ImageModelTool from '../input-tool-bar/components/image-model-tool';
 import ImageRatioTool from '../input-tool-bar/components/image-ratio-tool';
+import CiteSubjectTool from '../input-tool-bar/components/cite-subject-tool';
 import type { ImageSetting } from '../types';
+import { Tooltip } from '@douyinfe/semi-ui';
 
 export function renderTools(
     toolKey: PromptToolKey,
     ctx: {
         imageSettings: ImageSetting;
         updateImageSettings: (partial: Partial<ImageSetting>) => void;
+        insertQuotesAtCursor: () => void;
     }
 ) {
      
@@ -26,7 +29,7 @@ export function renderTools(
                 <BaseButton text='使用技能' />
             )
         case 'citeReference':
-            return <BaseButton  text='@ '/>
+            return <CiteSubjectTool />
         case 'imageModelSelect':
             return <ImageModelTool 
                 model={ctx.imageSettings.model}
@@ -38,10 +41,16 @@ export function renderTools(
                 updateImageSettings={ctx.updateImageSettings}
             />
         case 'textAugment':
-            return <BaseButton
-                text='T,,'
-                onClick={() => ctx.updateImageSettings({ prompt: `“${ctx.imageSettings.prompt ?? ''}”` })}
-            />
+            return (
+                <Tooltip
+                    content={'文字效果增强'}
+                >
+                    <BaseButton
+                    text='T,,'
+                    onClick={() => ctx.insertQuotesAtCursor()}
+                />
+                </Tooltip>
+            )
         case 'videoModelSelect':
             return <BaseButton text='即梦 Seedance 2.0 mini' />
         case 'videoReference':
